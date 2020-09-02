@@ -1,3 +1,5 @@
+
+
 ### PyCharm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
@@ -103,6 +105,8 @@ fabric.properties
 .idea/codestream.xml
 
 ### Python ###
+=======
+>>>>>>> ca296815aeb06bc782eaed94b78397be326320d2
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -125,8 +129,11 @@ parts/
 sdist/
 var/
 wheels/
+<<<<<<< HEAD
 pip-wheel-metadata/
 share/python-wheels/
+=======
+>>>>>>> ca296815aeb06bc782eaed94b78397be326320d2
 *.egg-info/
 .installed.cfg
 *.egg
@@ -145,17 +152,25 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
+<<<<<<< HEAD
 .nox/
+=======
+>>>>>>> ca296815aeb06bc782eaed94b78397be326320d2
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
 *.cover
+<<<<<<< HEAD
 *.py,cover
 .hypothesis/
 .pytest_cache/
 pytestdebug.log
+=======
+.hypothesis/
+.pytest_cache/
+>>>>>>> ca296815aeb06bc782eaed94b78397be326320d2
 
 # Translations
 *.mo
@@ -165,7 +180,10 @@ pytestdebug.log
 *.log
 local_settings.py
 db.sqlite3
+<<<<<<< HEAD
 db.sqlite3-journal
+=======
+>>>>>>> ca296815aeb06bc782eaed94b78397be326320d2
 
 # Flask stuff:
 instance/
@@ -176,7 +194,10 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+<<<<<<< HEAD
 doc/_build/
+=======
+>>>>>>> ca296815aeb06bc782eaed94b78397be326320d2
 
 # PyBuilder
 target/
@@ -184,6 +205,7 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+<<<<<<< HEAD
 # IPython
 profile_default/
 ipython_config.py
@@ -204,6 +226,13 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
+=======
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+>>>>>>> ca296815aeb06bc782eaed94b78397be326320d2
 
 # SageMath parsed files
 *.sage.py
@@ -229,6 +258,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+<<<<<<< HEAD
 .dmypy.json
 dmypy.json
 
@@ -251,3 +281,5 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,virtualenv,pycharm
+
+
