@@ -54,8 +54,10 @@ True
 
 >>> where_is_accent('άνθρωπος')
 'antepenultimate'
+
 >>> where_is_accent('γυναίκα')
 'penultimate'
+
 >>> where_is_accent('παιδί')
 'ultimate'
 
@@ -64,6 +66,7 @@ enforced rules of accentuation, if you want to check specifically on which sylla
 
 >>> where_is_accent('κάποιας', true_syllabification=False)
 'antepenultimate'
+
 >>> where_is_accent('κάποιας')
 'penultimate'
 
@@ -82,7 +85,7 @@ but
 >>> put_accent('διαβατηριου', 'penultimate')
 'διαβατήριου'
 
-so in such cases
+so in such cases where accentuation rules override syllabification rules, you have to use the ``true_syllabification=False`` flag
 
 >>> put_accent('διαβατηριου', 'penultimate', true_syllabification=False)
 'διαβατηρίου'
@@ -109,6 +112,9 @@ SYLLABIFICATION
 
 >>> modern_greek_syllabify('κύριου')
 ['κύ', 'ριου']
+
+>>> modern_greek_syllabify('κυριου', true_syllabification=False)
+['κυ', 'ρι', 'ου']
 
 >>> count_syllables('άνθρωπος')
 3
