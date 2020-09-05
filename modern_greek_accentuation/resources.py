@@ -1,3 +1,13 @@
+
+PSILI = SMOOTH = "\u0313"
+DASIA = ROUGH = "\u0314"
+OXIA = ACUTE = "\u0301"
+VARIA = GRAVE = "\u0300"
+PERISPOMENI = CIRCUMFLEX = "\u0342"
+YPOGEGRAMMENI = IOTA_SUBSCRIPT = "\u0345"
+DIAERESIS = "\u0308"
+
+
 vowels_dict = {'ά': 'α', 'έ': 'ε', 'ί': 'ι', 'ύ': 'υ', 'ό': 'ο', 'ώ': 'ω', 'ή': 'η', 'ΐ': 'ϊ', 'ΰ': 'ϋ'}
 
 vowels_accented = ['ά', 'έ', 'ί', 'ύ', 'ό', 'ώ', 'ή', 'ΐ', 'ΰ']
@@ -18,17 +28,33 @@ diphtongs = ['αύ', 'αυ', 'εύ', 'ευ', 'εί', 'ει', 'οί', 'οι', 'υ
              'άι', 'αϊ', 'όι', 'οϊ', 'αί', 'αι']
 
 
-vowels_anc_transcription = {'α': 'a', 'ε': 'e', 'ι': 'i', 'υ': 'y', 'ο': 'o', 'ω': 'o', 'η': 'h', 'ϊ': 'i', 'ϋ': 'u'}
 
-vowels_mod_transcription = {'α': 'a', 'ε': 'e', 'ι': 'i', 'υ': 'i', 'ο': 'o', 'ω': 'o', 'η': 'i', 'ϊ': 'i', 'ϋ': 'i'}
+vowels_anc_transcription = {'α': 'a', 'ε': 'e', 'ι': 'i', 'υ': 'y', 'ο': 'o', 'ω': 'o',
+                            'η': 'h', 'ϊ': 'i', 'ϋ': 'u'}
 
-consonants_anc_transcription = {'β': 'b', 'γ': 'g', 'δ': 'd', 'θ':'th', 'ζ': 'z', 'λ':'l', 'κ':'k', 'μ':'m', 'ν':'n', 'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f', 'ψ':'ps', 'ξ':'ks'}
+vowels_mod_transcription = {'α': 'a', 'ε': 'e', 'ι': 'i', 'υ': 'i', 'ο': 'o', 'ω': 'o', 'η': 'i',
+                            'ϊ': 'i', 'ϋ': 'i'}
 
-consonants_mod_transcription = {'β': 'w', 'γ': 'gh', 'δ': 'dh', 'θ':'th', 'λ':'l', 'μ':'m', 'ν':'n', 'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f', 'ψ':'ps', 'ξ':'ks'}
+consonants_anc_transcription = {'β': 'b', 'γ': 'g', 'δ': 'd', 'θ':'th', 'ζ': 'z', 'λ':'l', 'κ':'k',
+                                'μ':'m', 'ν':'n', 'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f',
+                                'ψ':'ps', 'ξ':'ks'}
+
+consonants_mod_transcription = {'β': 'w', 'γ': 'gh', 'δ': 'dh', 'θ':'th', 'λ':'l', 'μ':'m', 'ν':'n',
+                                'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f', 'ψ':'ps', 'ξ':'ks'}
 
 digraphs_anc_transcirption = {'αυ': 'au', 'ευ': 'eu', 'γγ': 'ng', 'γκ': 'nk', 'γχ': 'nch', 'ου': 'ou'}
 
-digraphs_mod_transciption = {}
+digraphs_mod_transciption = {'αυ': 'aw', 'ευ': 'ew', 'γγ': 'ng', 'γκ': 'ng', 'γχ': 'nch',
+                             'ου': 'u', 'αι': 'e', 'οι': 'i', 'ει': 'i', 'υι': 'i', 'ηυ': 'iw'}
+
+
+ancient_tr = {'vowels': vowels_anc_transcription,
+              'consonants': consonants_anc_transcription,
+              'digraphs': digraphs_anc_transcirption}
+
+modern_tr = {'vowels': vowels_mod_transcription,
+             'consonants': consonants_mod_transcription,
+             'digraphs': digraphs_mod_transciption}
 
 list_of_def_diphthongs = ['ειευ', 'οιευ', 'ιευ', 'ειαυ', 'οιαυ', 'ιαυ', 'ιου', 'οιου', 'ειου', 'υου', 'οια', 'οιε',
                           'οιι',

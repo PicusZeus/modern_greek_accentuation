@@ -3,15 +3,6 @@ from .syllabify import *
 import unicodedata
 
 
-PSILI = SMOOTH = "\u0313"
-DASIA = ROUGH = "\u0314"
-OXIA = ACUTE = "\u0301"
-VARIA = GRAVE = "\u0300"
-PERISPOMENI = CIRCUMFLEX = "\u0342"
-YPOGEGRAMMENI = IOTA_SUBSCRIPT = "\u0345"
-DIAERESIS = "\u0308"
-
-
 def remove_diacritics(*diacritics, diaeresis=True):
     """
     :param diacritics: even though it's Modern Greek there can be still instances of polytonic texts

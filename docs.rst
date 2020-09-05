@@ -155,3 +155,24 @@ This function add a recessive accent and removes augment where it's necessary, t
 
 >>> put_accent_on_past_tense('ηλπιζαμε', 'ελπίζω')
 'ελπίζαμε'
+
+
+TRANSCRIPTION
+=============
+
+>>> from modern_greek_accentuation.transcription import *
+
+>>> simple_transcription('Βασίλης')
+'Basilhs'
+
+>>> simple_transcription('Ευρώπη')
+'Europh'
+
+>>> erasmian_transcription('Ἡρόδοτος')
+'Herodotos'
+
+>>> modern_transcription('Γιώργος')
+'Jorgos'
+
+>>> modern_transcription('υγηείς')
+'ijiis'

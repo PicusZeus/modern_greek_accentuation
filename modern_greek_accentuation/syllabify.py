@@ -34,14 +34,15 @@ def _cut_off_syllable(word, true_syllabification=False):
                     if true_syllabification:
                         # check if this i is a part of a digraph
                         if len(all_letters[border + 1:]) > 1 and all_letters[border + 2] + \
-                                all_letters[border + 1] in un_digraph_i:
+                                all_letters[border + 1] in un_digraph_i and (len(all_letters[border + 2:]) > 1 and all_letters[border + 3] in ['β', 'δ', 'ζ', 'ρ', 'θ', 'π', 'σ', 'τ', 'φ', 'μ', 'ν']):
                             # is oi, ei....
                             border += 2
-                        # check if
+                        # check if single i
 
                         elif all_letters[border + 1] in un_single_i and len(all_letters[border + 1:]) > 1 and \
                                 (all_letters[border + 2] + all_letters[border + 1]) not in ['ευ', 'εύ', 'αυ', 'αύ']:
-                            border += 1
+                            if len(all_letters[border + 2:]) > 1 and all_letters[border + 3] in ['β', 'δ', 'ζ', 'ρ', 'θ', 'π', 'σ', 'τ', 'φ', 'μ', 'ν']:
+                        g        border += 1
 
                     rest = all_letters[border + 1:]
                     cons = ''
