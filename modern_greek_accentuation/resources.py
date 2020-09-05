@@ -40,7 +40,7 @@ consonants_anc_transcription = {'β': 'b', 'γ': 'g', 'δ': 'd', 'θ':'th', 'ζ'
                                 'ψ':'ps', 'ξ':'ks'}
 
 consonants_mod_transcription = {'β': 'w', 'γ': 'gh', 'δ': 'dh', 'θ':'th', 'λ':'l', 'μ':'m', 'ν':'n',
-                                'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f', 'ψ':'ps', 'ξ':'ks'}
+                                'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f', 'ψ':'ps', 'ξ':'ks', 'χ': 'ch'}
 
 digraphs_anc_transcirption = {'αυ': 'au', 'ευ': 'eu', 'γγ': 'ng', 'γκ': 'nk', 'γχ': 'nch', 'ου': 'ou'}
 

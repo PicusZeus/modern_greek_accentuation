@@ -34,15 +34,15 @@ def _cut_off_syllable(word, true_syllabification=False):
                     if true_syllabification:
                         # check if this i is a part of a digraph
                         if len(all_letters[border + 1:]) > 1 and all_letters[border + 2] + \
-                                all_letters[border + 1] in un_digraph_i and (len(all_letters[border + 2:]) > 1 and all_letters[border + 3] in ['β', 'δ', 'ζ', 'ρ', 'θ', 'π', 'σ', 'τ', 'φ', 'μ', 'ν']):
+                                all_letters[border + 1] in un_digraph_i:
                             # is oi, ei....
                             border += 2
                         # check if single i
 
                         elif all_letters[border + 1] in un_single_i and len(all_letters[border + 1:]) > 1 and \
                                 (all_letters[border + 2] + all_letters[border + 1]) not in ['ευ', 'εύ', 'αυ', 'αύ']:
-                            if len(all_letters[border + 2:]) > 1 and all_letters[border + 3] in ['β', 'δ', 'ζ', 'ρ', 'θ', 'π', 'σ', 'τ', 'φ', 'μ', 'ν']:
-                        g        border += 1
+
+                            border += 1
 
                     rest = all_letters[border + 1:]
                     cons = ''
@@ -100,13 +100,21 @@ def _divide_into_syllables(word, syllables=[], true_syllabification=False):
 
 
 def modern_greek_syllabify(word, true_syllabification=True):
-    # true syllabification is applicable for accentuation of verbs, and of course proper syllabification
-    # but for some nouns it has to syllabify word according to ancient language rules in order to be
-    # accented correctly
+    """
+    There is a problem as to how treat 'i' before vowels, as it is inconsistent across Modern Greek
+    (χρη-σι-μο-ποι-ώ, υ-γι-ής, κα-τα-πιώ, και-νού-ργιο, Γιε-ώ-ργι-ος κτλ.), which mainly comes from the injection of
+    katarevousians words into dimotic vocabulary. It's impossible to know it without a db of all "logies lekseis".
+    For the sake of accentuation, you can use true_syllabification flag, which if False, will divide words treating
+    'i' always as vowel. Still the result of this function should be most of the time correct
+    :param word: word in Greek chars, works best if the word is accented
+    :param true_syllabification: if you want to divide word treating 'i' always as vowel, give it a False value
+    :return: Array with syllables
+    """
     rest, syllables = _divide_into_syllables(word, [], true_syllabification=true_syllabification)
     syllables.reverse()
 
     return syllables
+
 
 def has_vowel(word):
     for letter in word:

@@ -1,3 +1,5 @@
+
+import re
 from .accentuation import remove_all_diacritics
 from .syllabify import modern_greek_syllabify
 from .resources import vowels_anc_transcription, \
@@ -14,11 +16,9 @@ def simple_transcription(word, h=None, modern=False):
     :param modern_tr: modern transcription method if True
     :return: transcription, returns capitalised or all upper or all lower depending on the input.
     """
-    if modern:
-        syllabified = modern_greek_syllabify(word)
-        print(syllabified)
-    else:
-        syllabified = modern_greek_syllabify(word, true_syllabification=False)
+
+    syllabified = modern_greek_syllabify(word, true_syllabification=False)
+
     transcr_meth = ancient_tr
     if modern:
         transcr_meth = modern_tr
@@ -39,7 +39,6 @@ def simple_transcription(word, h=None, modern=False):
                 transcribed_syllable += transcription
                 if h:
                     transcribed_syllable = transcribed_syllable.replace('h', h)
-
 
                 syllable = syllable[1:]
             elif syllable[0].lower() in transcr_meth['consonants'].keys():
@@ -109,6 +108,19 @@ def erasmian_transcription(word):
 
 def modern_transcription(word):
     transcription = simple_transcription(word, modern=True)
+
+    if 'w' in transcription:
+        ws = re.finditer('w', transcription)
+        for w in ws:
+            index = w.start()
+            # print(index, transcription[index], transcription[index+1:index+3])
+            if len(transcription) > index:
+
+                if transcription[index+1] in ['t', 'p', 'k', 's'] or len(transcription) > index + 3 and transcription[index+1:index+3] == 'ch':
+                    transcription = transcription[:index] + 'f' + transcription[index+1:]
+
+            else:
+                transcription[index] = 'f'
     return transcription
 
 

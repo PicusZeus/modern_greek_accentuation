@@ -171,8 +171,15 @@ TRANSCRIPTION
 >>> erasmian_transcription('Ἡρόδοτος')
 'Herodotos'
 
->>> modern_transcription('Γιώργος')
-'Jorgos'
+>>> modern_transcription('Βασίλης')
+'Wasilis'
 
->>> modern_transcription('υγηείς')
-'ijiis'
+>>> modern_transcription('ευχαριστώ')
+'efcharisto'
+
+>>> modern_transcription('διεύθηνση')
+'dhiefthinsi'
+
+>>> modern_transcription('διαβατήριο')
+'dhiawatirio'
+
