@@ -2,8 +2,7 @@
 import re
 from .accentuation import remove_all_diacritics
 from .syllabify import modern_greek_syllabify
-from .resources import vowels_anc_transcription, \
-    consonants_anc_transcription, digraphs_anc_transcirption, vowels, ancient_tr, modern_tr, ROUGH
+from .resources import vowels, ancient_tr, modern_tr, ROUGH
 import unicodedata
 
 
@@ -107,13 +106,18 @@ def erasmian_transcription(word):
 
 
 def modern_transcription(word):
+    """
+    It has nothing to do with phonetic transcription in international phonetic alphabet. It's thought only for Polish
+    readers as a simple way to get transcription of Modern Greek texts accessible to lay people
+    :param word: written in Greek chars
+    :return: simple transcription in following Modern Greek pronunciation.
+    """
     transcription = simple_transcription(word, modern=True)
 
     if 'w' in transcription:
         ws = re.finditer('w', transcription)
         for w in ws:
             index = w.start()
-            # print(index, transcription[index], transcription[index+1:index+3])
             if len(transcription) > index:
 
                 if transcription[index+1] in ['t', 'p', 'k', 's'] or len(transcription) > index + 3 and transcription[index+1:index+3] == 'ch':

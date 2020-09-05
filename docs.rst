@@ -183,3 +183,6 @@ TRANSCRIPTION
 >>> modern_transcription('διαβατήριο')
 'dhiawatirio'
 
+>>> modern_transcription('χρησιμοποιώ')
+'chrisimopio'
+

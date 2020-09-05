@@ -1,4 +1,3 @@
-from .resources import *
 from .syllabify import *
 import unicodedata
 

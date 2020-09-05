@@ -1,6 +1,7 @@
 from .accentuation import *
 from .resources import *
 
+
 def add_augment(not_augmented_form):
     """
     :param not_augmented_form: past verb form without an augment or perfect participle.
@@ -84,10 +85,7 @@ def add_augment(not_augmented_form):
             # filter_out irregularities
             results = list(set(results))
             results = [f for f in results if count_syllables(f) > 2 or f[:-1] in ['πήγ', 'πήρ', 'είχ', 'ήρθ',
-                                                                                 'ήλθ',
-                                                                                 'βρήκ',
-                                                                                 'μπήκ',
-                                                                                 'βηήκ',
+                                                                                 'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
                                                                                  'βήκ', 'είπ', 'είδ', 'ήπι']]
 
     return results
@@ -96,7 +94,6 @@ def add_augment(not_augmented_form):
 def deaugment_prefixed_stem(stem):
     """
     :param stem: verb stem with cut off ending, prefixed
-
     :return: check if the stem is augmented and if it is, returns an anaugmented stem
     """
 
@@ -181,6 +178,5 @@ def put_accent_on_past_tense(past_form, present_form):
     result = ''.join(syllables)
 
     return prefix + result
-
 
 
