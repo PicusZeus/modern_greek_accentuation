@@ -30,7 +30,7 @@ def add_augment(not_augmented_form):
                 if verb[0] in ['ο' 'ό']:
                     form = put_accent_on_the_antepenultimate('ω' + verb[1:])
                     sub_res.append(form)
-            elif count_syllables(verb) == 2 and verb[-1] in ['α', 'ε']:
+            elif verb[-1] in ['α', 'ε']:
                 form = put_accent_on_the_antepenultimate('ε' + verb)
                 if verb[:-1] in ['θέλ', 'ξέρ']:
                     form = put_accent_on_the_antepenultimate('η' + verb)

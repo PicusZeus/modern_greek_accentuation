@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="modern-greek-accentuation",
-    version="0.2.1",
+    version="0.2.2",
     description="Python 3 library for accenting, analyzing accentuation, "
                 "syllabification, augmentaion and transcription of Modern Greek words",
     long_description=long_description,

@@ -130,18 +130,20 @@ but the results always need to be checked against a database of Modern Greek wor
 
 This function returns a list of possible agmented forms, that have to be checked
 
->>> len([ e for e in add_augment('θέλα') if e in ['ήθελα']])
-1
+>>> not set([ e for e in add_augment('θέλα')]).difference(('ήθελα',))
+True
 
->>> len([ e for e in add_augment('υποφερα') if e in ['υπφέρα', 'υπόφερα', 'υπέφερα', 'υποφερα']])
-4
+>>> not set([ e for e in add_augment('υποφερα')]).difference(('υποφερα', 'υπφέρα', 'υπόφερα', 'ευπόφερα', 'υπέφερα'))
+True
 
->>> len([ e for e in add_augment('πρόκειτο') if e in ['επρόκειτο', 'πρόκειτο']])
-2
+>>> not set([ e for e in add_augment('πρόκειτο')]).difference(('επρόκειτο', 'πρόκειτο'))
+True
 
+>>> not set([ e for e in add_augment('δομένος')]).difference(('εδομένος', 'δομένος', 'δεδομένος', 'δόμενος'))
+True
 
->>> len([ e for e in add_augment('δομένος') if e in ['εδομένος', 'δομένος', 'δεδομένος', 'δόμενος']])
-4
+>>> not set([ e for e in add_augment('συλλάμβανα')]).difference(('συνλάμβανα', 'συνλλάμβανα', 'συνελλάμβανα', 'συνελάμβανα', 'εσυλλάμβανα', 'συλλάμβανα'))
+True
 
 
 
