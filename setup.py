@@ -8,7 +8,9 @@ setup(
     version="0.2.3",
     description="Python 3 library for accenting, analyzing accentuation, "
                 "syllabification, augmentation and transcription of Modern Greek words",
+    long_description_content_type="text/markdown",
     long_description=long_description,
+
     license="MIT",
     url="http://github.com/PicusZeus/modern-greek-accentuation",
     author="Krzysztof Hilman",
