@@ -78,6 +78,12 @@ enforced rules of accentuation, if you want to check specifically on which sylla
 >>> put_accent('παιδί', 'ultimate')
 'παιδί'
 
+>>> put_accent('Βαϊου', 'penultimate')
+'Βάιου'
+
+>>> put_accent('Βαϊου', 'penultimate', true_syllabification=False)
+'Βαΐου'
+
 >>> put_accent('καποιας', 'penultimate')
 'κάποιας'
 
@@ -109,6 +115,15 @@ SYLLABIFICATION
 
 >>> modern_greek_syllabify('άνθρωπος')
 ['άν', 'θρω', 'πος']
+
+>>> modern_greek_syllabify('ρολοϊού')
+['ρο', 'λο', 'ϊού']
+
+>>> modern_greek_syllabify('ρολογιού')
+['ρο', 'λο', 'γιού']
+
+>>> modern_greek_syllabify('ρολοϊου')
+['ρο', 'λο', 'ϊου']
 
 >>> modern_greek_syllabify('κύριου')
 ['κύ', 'ριου']

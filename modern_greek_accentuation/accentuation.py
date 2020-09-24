@@ -82,12 +82,8 @@ def put_accent_on_syllable(syllable):
                 accented_syllable = syllable
                 break
 
-    diaeresis_dipht = {'όϊ':'όι', 'άϊ': "άι", 'έϊ': "έι", 'ύϊ': 'ύι', 'όϋ': 'όυ'}
-
     # but if accent makes diaeresis redundant, it should be removed
-    for diaer_with_acc in diaeresis_dipht.keys():
-        if diaer_with_acc in accented_syllable:
-            accented_syllable = accented_syllable.replace(diaer_with_acc, diaeresis_dipht[diaer_with_acc])
+    accented_syllable = remove_redundand_diaeresis(accented_syllable)
 
     return accented_syllable
 
@@ -122,7 +118,7 @@ def where_is_accent(word, true_syllabification=True):
 def put_accent(word, accent_name, true_syllabification=True):
     """
 
-    :param word:
+    :param word: can be already accented
     :param accent_name:'antepenultimate', 'penultimate', 'ultimate'
     :param true_syllabification:
     :return: if accent_name param given incorrect, return input word
@@ -131,15 +127,24 @@ def put_accent(word, accent_name, true_syllabification=True):
         word = put_accent_on_the_ultimate(word)
     elif accent_name == 'penultimate':
 
-
         word = put_accent_on_the_penultimate(word, true_syllabification=true_syllabification)
     elif accent_name == 'antepenultimate':
         word = put_accent_on_the_antepenultimate(word, true_syllabification=true_syllabification)
 
+    # check if there is a superflouus diaeresis in cases where ϊ (with diaeresis) is not an independent vowel ('ϊου' in eg 'ρολοϊου'),
+    # and as a result we have syllabification of this kind: 'ρο-λο-ϊου'
+
     return word
 
 
-
+def remove_redundand_diaeresis(word):
+    redundant_diaereseis = {'όϊ': 'όι', 'άϊ': "άι", 'έϊ': "έι", 'ύϊ': 'ύι', 'όϋ': 'όυ'}
+    if DIAERESIS in unicodedata.normalize('NFD', word):
+        for redundant_diaeresis in redundant_diaereseis:
+            if redundant_diaeresis in word:
+                word = word.replace(redundant_diaeresis, redundant_diaereseis[redundant_diaeresis])
+                break
+    return word
 
 
 def put_accent_on_the_ultimate(word, accent_one_syllable=True, second_accent=False):
@@ -185,6 +190,8 @@ def put_accent_on_the_penultimate(word, true_syllabification=True):
        
         syllables[-2] = accented
         res = ''.join(syllables)
+
+        res = remove_redundand_diaeresis(res)
     
         return res
     else:
@@ -207,6 +214,7 @@ def put_accent_on_the_antepenultimate(word, true_syllabification=True):
 
         syllables[-3] = accented
         res = ''.join(syllables)
+        res = remove_redundand_diaeresis(res)
         return res
     else:
         res = put_accent_on_the_penultimate(word)
