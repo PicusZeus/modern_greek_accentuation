@@ -1,0 +1,13 @@
+﻿2-letter consonant clusters Greek words can start with (as identified from three Greek databases).
+
+βγ, βδ, βλ, βρ, γδ, γκ, γλ, γν, γρ, δρ, θλ, θν, θρ, κβ, κλ, κν, κρ, κτ, μν, μπ, ντ, πλ, πν, πρ, πτ, σβ, σγ, σθ, σκ, σλ, σμ, σν, σπ, στ, σφ, σχ, τζ, τμ, τρ, τσ, φθ, φλ, φρ, φτ, χθ, χλ, χμ, χν, χρ, χτ.
+
+
+Resulting syllable-initial consonant clusters in GreekLex 2.
+
+γ, δ, ζ, θ, κ, λ, μ, ν, ξ, π, ρ, σ, τ, φ, χ, ψ, β, βρ, δρ, μν, μπ, ντ, πρ, σκ, γν, γρ, κρ, κτ, πλ, σμ, στ, χλ, χν, χτ, γκ, γκρ, βγ, πτ, τσ, κλ, μπλ, μπρ, χθ, πν, σπ, τζ, τρ, φλ, φτ, χρ, θλ, θρ, γλ, χμ, ντλ, ντρ, σβ, σθμ, στρ, τμ, φρ, βλ, γδ, θν, χθρ, χτρ, ντσ, σλ, σχ, κν, φθ, σφ, βδ, σν, σπρ, σθ, κτρ, γκλ, κβ, μπν, σχν, μπτ, ντζ, φτρ, πτρ, σκλ, σκν, σκρ, σπλ, σχρ, σφρ, σμπ, σγ, γκτ, κτσ, χτσ, γκτρ.
+
+
+Phonological syllable-initial clusters in GreekLex 2 (acc. to rules described in the journal article).
+
+'vj', 'vr', 'Dr', 'mn', 'pX', 'pr', 'sc', 'Jn', 'Jr', 'km', 'kr', 'kt', 'pl', 'sk', 'zm', 'st', 'vJ', 'vl', 'ft', 'xl', 'xn', 'xt', 'psX', 'gr', 'pt', 'ts', 'fX', 'Dj', 'sX', 'tX', 'kl', 'bl', 'br', 'ksX', 'xT', 'pn', 'sp', 'dz', 'tr', 'fl', 'xr', 'Tl', 'Tr', 'Jl', 'xm', 'dl', 'dr', 'zv', 'sTm', 'str', 'tm', 'fks', 'fr', 'TX', 'JD', 'vm', 'fn', 'Jm', 'hG', 'Tn', 'ksp', 'kstr', 'vD', 'fT', 'vn', 'xTr', 'xtr', 'mN', 'Tm', 'sl', 'kn', 'tl', 'mD', 'fk', 'fc', 'sf', 'sx', 'sn', 'spr', 'tn', 'sT', 'ktr', 'tsX', 'gl', 'ftX', 'zD', 'sr', 'kv', 'kD', 'kz', 'kT', 'kpn', 'kp', 'kf', 'kX', 'kx', 'bn', 'kspr', 'vz', 'Dn', 'vJm', 'sxn', 'Dm', 'bj', 'dj', 'pN', 'ftr', 'xtX', 'ptr', 'skl', 'skn', 'skr', 'spl', 'ftl', 'fx', 'tf', 'sxr', 'stX', 'spn', 'kvr', 'kDr', 'kTl', 'kpl', 'kpt', 'ksk', 'kst', 'kfr', 'fzm', 'fz', 'fkl', 'ptX', 'zn', 'sfr', 'gb', 'zb', 'sJ', 'vd', 'vL', 'fkt', 'zj', 'tT', 'vJn', 'fkr', 'kts', 'kL', 'xN', 'fTm', 'JDj', 'xts', 'fN', 'pf', 'gn', 'dm', 'kj', 'kTr', 'kpr', 'fs', 'vJl', 'fTr', 'fxr', 'xL', 'dzj', 'bL', 'pL', 'zvl', 'skt', 'tzm', 'gL', 'xp', 'stf', 'tx', 'JN', 'kvl', 'fL', 'dzm', 'tsJ', 'sj', 'tsc', 'ksf', 'kxr'
