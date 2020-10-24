@@ -1,0 +1,49 @@
+﻿IPA	Symbol	Example	
+
+     Consonants			
+ð	D	δώρο	
+ɟ	G	γκίνια	
+ɣ	J	γόμα	
+ʎ	L	λιαστός	
+ɲ	N	νιάτα	
+θ	T	θέση	
+ç	X	χύμα	
+c	c	κερί	
+b	b	μπάλα	
+d	d	ντόρος	
+g	g	γκάμα	
+f	f	φορά	
+ŋ	h	άγχος		Never initial
+k	k	κάλος	
+ʝ	j	γέρος	
+m	m	μέση	
+l	l	λύπη	
+n	n	νίμα	
+p	p	πάλη	
+s	s	σάκος	
+ɾ	r	ρήψη	
+t	t	τόκος	
+v	v	βέλος	
+x	x	χώρος	
+z	z	ζάρι
+	
+Not used in GreekLex2			
+ʣ	Z	τζάκι	
+ʦ	S	τσίτα	
+ɱ	M	αμφορέας	Never initial
+ts	S	τσάρος
+	
+      Vowels			
+a	a	απών	
+ɛ	e	εκεί	
+i	i	υπέρ	
+o	o	ορός	
+u	u	ουρά	
+ˈa	ά	άλλος	
+ˈɛ	έ	ένας	
+ˈi	ί	είμαι	
+ˈo	ό	ώστε	
+ˈu	ύ	ούτε	
+
+
+Protopapas, A., Tzakosta, M., Chalamandaris, A., & Tsiakoulis, P. (2012). IPLR: An online resource for Greek word-level and sublexical information. Language Resources and Evaluation, 46(3), 449–459. http://doi.org/10.1007/s10579-010-9130-z
