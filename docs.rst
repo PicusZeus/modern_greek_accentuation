@@ -13,6 +13,8 @@ Accentuation
 The  ``modern-greek-accentuation.accentuation`` module allows analysis and manipulation
 of Modern Greek words in terms of their diacritics
 
+You can remove all accents
+
 >>> remove_all_diacritics('άνθρωπος')
 'ανθρωπος'
 
@@ -26,7 +28,7 @@ It also removes diacritics from the polytonic system
 >>> remove_all_diacritics('ἀγαθοῦ')
 'αγαθου'
 
-If you want remove also diaeresis
+If you want, you can remove also diaeresis
 
 >>> remove_all_diacritics_with_diaer('προϋπηρεσία')
 'προυπηρεσια'
@@ -106,6 +108,11 @@ with the same effect
 
 >>> put_accent('καποιας', 'penultimate') == put_accent_on_the_penultimate('καποιας')
 True
+
+If you have a text in polytonic system, and you want to get it in monotonic, use ``convert_to_monotonic`` function:
+
+>>> convert_to_monotonic('ἐν τῷ πρόσθεν λόγῳ δεδήλωται.')
+'εν τω πρόσθεν λόγω δεδήλωται.'
 
 
 SYLLABIFICATION

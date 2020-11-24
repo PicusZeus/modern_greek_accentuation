@@ -23,7 +23,29 @@ remove_all_diacritics = remove_diacritics(PSILI, DASIA, OXIA, VARIA, PERISPOMENI
 
 remove_all_diacritics_with_diaer = remove_diacritics(PSILI, DASIA, OXIA, VARIA, PERISPOMENI, YPOGEGRAMMENI, DIAERESIS)
 
+remove_non_accent_diacritics = remove_diacritics(YPOGEGRAMMENI, ROUGH, SMOOTH)
+
 remove_diaer = remove_diacritics(DIAERESIS)
+
+
+def convert_to_monotonic(sentence_or_word):
+    sentence_or_word = remove_non_accent_diacritics(sentence_or_word)
+    sentence_or_word = unicodedata.normalize("NFD", sentence_or_word)
+    for polytonic_accent in [VARIA, PERISPOMENI]:
+        sentence_or_word = sentence_or_word.replace(polytonic_accent, OXIA)
+    sentence_or_word = unicodedata.normalize("NFC", "".join(sentence_or_word))
+    words = sentence_or_word.split()
+    removed_one_syllable_accent = []
+    excluded = ['ή']
+    if sentence_or_word[-1] == ';':
+        excluded = ['ή', 'πού', 'πώς']
+    for word in words:
+        if count_syllables(word) == 1 and word not in excluded:
+            removed_one_syllable_accent.append(remove_all_diacritics(word))
+        else:
+            removed_one_syllable_accent.append(word)
+
+    return ' '.join(removed_one_syllable_accent)
 
 
 def is_accented(syllable):
