@@ -158,7 +158,7 @@ True
 >>> not set([ e for e in add_augment('υποφερα')]).difference(('υποφερα', 'υπφέρα', 'υπόφερα', 'ευπόφερα', 'υπέφερα'))
 True
 
->>> not set([ e for e in add_augment('πρόκειτο')]).difference(('επρόκειτο', 'πρόκειτο'))
+>>> not set([ e for e in add_augment('πρόκειτο')]).difference(('πρόκειτο', 'προκείτο', 'επρόκειτο', 'προεκειτο', 'προκειτο'))
 True
 
 >>> not set([ e for e in add_augment('δομένος')]).difference(('εδομένος', 'δομένος', 'δεδομένος', 'δόμενος'))

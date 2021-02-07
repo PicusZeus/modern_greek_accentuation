@@ -15,7 +15,7 @@ def add_augment(not_augmented_form):
         not_augmented_form, False), not_augmented_form]
     for pref in prefixes_before_augment.keys():
 
-        if pref.strip() == not_augmented_form[:len(pref.strip())]:
+        if pref.strip() == remove_all_diacritics(not_augmented_form[:len(pref.strip())]):
 
             verb = not_augmented_form[len(pref.strip()):]
             sub_res = [put_accent_on_the_antepenultimate(verb)]
