@@ -25,11 +25,13 @@ remove_all_diacritics_with_diaer = remove_diacritics(PSILI, DASIA, OXIA, VARIA, 
 
 remove_non_accent_diacritics = remove_diacritics(YPOGEGRAMMENI, ROUGH, SMOOTH)
 
+remove_non_accent_diacritics_without_dierisis = remove_diacritics(YPOGEGRAMMENI, ROUGH, SMOOTH, diaeresis=False)
+
 remove_diaer = remove_diacritics(DIAERESIS)
 
 
 def convert_to_monotonic(sentence_or_word):
-    sentence_or_word = remove_non_accent_diacritics(sentence_or_word)
+    sentence_or_word = remove_non_accent_diacritics_without_dierisis(sentence_or_word)
     sentence_or_word = unicodedata.normalize("NFD", sentence_or_word)
     for polytonic_accent in [VARIA, PERISPOMENI]:
         sentence_or_word = sentence_or_word.replace(polytonic_accent, OXIA)
