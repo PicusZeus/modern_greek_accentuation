@@ -5,6 +5,10 @@ from .syllabify import modern_greek_syllabify
 from .resources import vowels, ancient_tr, modern_tr, ROUGH
 import unicodedata
 
+"""
+TO DO: add transcription to greeklish
+"""
+
 
 def simple_transcription(word, h=None, modern=False):
     """
