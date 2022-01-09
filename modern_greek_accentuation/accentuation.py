@@ -116,7 +116,7 @@ def where_is_accent(word, true_syllabification=True):
     """
     :param word:
     :param true_syllabification: that is where i before a vowel doesnt constitute a single syllable
-    :return: 'antepenultimate', 'penultimate', 'ultimate', 'incorrect_accent', and if there is no accent, None
+    :return: ANTEPENULTIMATE, PENULTIMATE, ULTIMATE, 'incorrect_accent', and if there is no accent, None
     """
     which = None
 
@@ -128,11 +128,11 @@ def where_is_accent(word, true_syllabification=True):
             which = index
             break
     if which == 0:
-        return 'ultimate'
+        return ULTIMATE
     elif which == 1:
-        return 'penultimate'
+        return PENULTIMATE
     elif which == 2:
-        return 'antepenultimate'
+        return ANTEPENULTIMATE
     elif not which:
         return None
     else:
@@ -143,16 +143,16 @@ def put_accent(word, accent_name, true_syllabification=True):
     """
 
     :param word: can be already accented
-    :param accent_name:'antepenultimate', 'penultimate', 'ultimate'
+    :param accent_name:ANTEPENULTIMATE, PENULTIMATE, ULTIMATE
     :param true_syllabification:
     :return: if accent_name param given incorrect, return input word
     """
-    if accent_name == 'ultimate':
+    if accent_name == ULTIMATE:
         word = put_accent_on_the_ultimate(word)
-    elif accent_name == 'penultimate':
+    elif accent_name == PENULTIMATE:
 
         word = put_accent_on_the_penultimate(word, true_syllabification=true_syllabification)
-    elif accent_name == 'antepenultimate':
+    elif accent_name == ANTEPENULTIMATE:
         word = put_accent_on_the_antepenultimate(word, true_syllabification=true_syllabification)
 
     # check if there is a superflouus diaeresis in cases where ϊ (with diaeresis) is not an independent vowel ('ϊου' in eg 'ρολοϊου'),
@@ -177,7 +177,7 @@ def put_accent_on_the_ultimate(word, accent_one_syllable=True, second_accent=Fal
     if second_accent:
         if where_is_accent(
             word, true_syllabification=False
-        ) == 'penultimate':
+        ) == PENULTIMATE:
             pass
         else:
 

@@ -152,19 +152,19 @@ but the results always need to be checked against a database of Modern Greek wor
 
 This function returns a list of possible agmented forms, that have to be checked
 
->>> not set([ e for e in add_augment('θέλα')]).difference(('ήθελα',))
+>>> "ήθελα" in add_augment('θέλα')
 True
 
->>> not set([ e for e in add_augment('υποφερα')]).difference(('υποφερα', 'υπφέρα', 'υπόφερα', 'ευπόφερα', 'υπέφερα'))
+>>> "υπέφερα" in add_augment('υποφερα')
 True
 
->>> not set([ e for e in add_augment('πρόκειτο')]).difference(('πρόκειτο', 'προκείτο', 'επρόκειτο', 'προεκειτο', 'προκειτο'))
+>>> "επρόκειτο" in add_augment('πρόκειτο')
 True
 
->>> not set([ e for e in add_augment('δομένος')]).difference(('εδομένος', 'δομένος', 'δεδομένος', 'δόμενος'))
+>>> "δεδομένος" in add_augment('δομένος')
 True
 
->>> not set([ e for e in add_augment('συλλάμβανα')]).difference(('συνλάμβανα', 'συνλλάμβανα', 'συνελλάμβανα', 'συνελάμβανα', 'εσυλλάμβανα', 'συλλάμβανα'))
+>>> "συνελάμβανα" in add_augment('συλλάμβανα')
 True
 
 
@@ -201,7 +201,7 @@ TRANSCRIPTION
 >>> modern_transcription('ευχαριστώ')
 'efcharisto'
 
->>> modern_transcription('διεύθηνση')
+>>> modern_transcription('διεύθυνση')
 'dhiefthinsi'
 
 >>> modern_transcription('διαβατήριο')

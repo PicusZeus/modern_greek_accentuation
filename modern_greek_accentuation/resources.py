@@ -7,6 +7,10 @@ PERISPOMENI = CIRCUMFLEX = "\u0342"
 YPOGEGRAMMENI = IOTA_SUBSCRIPT = "\u0345"
 DIAERESIS = "\u0308"
 
+ANTEPENULTIMATE = 'antepenultimate'
+PENULTIMATE = 'penultimate'
+ULTIMATE = 'ultimate'
+
 
 vowels_dict = {'ά': 'α', 'έ': 'ε', 'ί': 'ι', 'ύ': 'υ', 'ό': 'ο', 'ώ': 'ω', 'ή': 'η', 'ΐ': 'ϊ', 'ΰ': 'ϋ'}
 
