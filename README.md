@@ -1,4 +1,7 @@
- # Modern-greek-accentuation
+![Tests](https://github.com/PicusZeus/modern_greek_accentuation/actions/workflows/tests.yml/badge.svg)
+
+
+# Modern-greek-accentuation
 
 Python 3 library for analyzing, accenting, syllabification, augmentation and transcription of Modern Greek Words
 
