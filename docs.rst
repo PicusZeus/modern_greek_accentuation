@@ -8,7 +8,9 @@ Accentuation
 
 =========================================
 
->>> from modern_greek_accentuation.accentuation import *
+>>> from src.accentuation import *
+
+The
 
 The  ``modern-greek-accentuation.accentuation`` module allows analysis and manipulation
 of Modern Greek words in terms of their diacritics
@@ -118,7 +120,30 @@ If you have a text in polytonic system, and you want to get it in monotonic, use
 SYLLABIFICATION
 ===============
 
->>> from modern_greek_accentuation.syllabify import *
+>>> from src.syllabify import *
+
+>>> modern_greek_syllabify('άνθρωπος')
+['άν', 'θρω', 'πος']
+
+>>> modern_greek_syllabify('ρολοϊού')
+['ρο', 'λο', 'ϊού']
+
+>>> modern_greek_syllabify('ρολογιού')
+['ρο', 'λο', 'γιού']
+
+>>> modern_greek_syllabify('ρολοϊου')
+['ρο', 'λο', 'ϊου']
+
+>>> modern_greek_syllabify('κύριου')
+['κύ', 'ριου']
+
+>>> modern_greek_syllabify('κυριου', true_syllabification=False)
+['κυ', 'ρι', 'ου']
+
+>>> count_syllables('άνθρωπος')
+3
+>>> count_syllables('κυριου', true_syllabification=False)
+3
 
 >>> modern_greek_syllabify('άνθρωπος')
 ['άν', 'θρω', 'πος']
@@ -145,7 +170,40 @@ SYLLABIFICATION
 
 AUGMENTATION
 ============
->>> from modern_greek_accentuation.augmentify import *
+>>> from src.augmentify import *
+
+Functions in this module help to deal with augments, reduplications and also internal augment,
+but the results always need to be checked against a database of Modern Greek words.
+
+This function returns a list of possible agmented forms, that have to be checked
+
+>>> "ήθελα" in add_augment('θέλα')
+True
+
+>>> "υπέφερα" in add_augment('υποφερα')
+True
+
+>>> "επρόκειτο" in add_augment('πρόκειτο')
+True
+
+>>> "δεδομένος" in add_augment('δομένος')
+True
+
+>>> "συνελάμβανα" in add_augment('συλλάμβανα')
+True
+
+
+
+This function add a recessive accent and removes augment where it's necessary, that is why you have to give a present simple form of a verb
+
+>>> put_accent_on_past_tense('εκανε', 'κάνω')
+'έκανε'
+
+>>> put_accent_on_past_tense('εκαναμε', 'κάνω')
+'κάναμε'
+
+>>> put_accent_on_past_tense('ηλπιζαμε', 'ελπίζω')
+'ελπίζαμε'
 
 Functions in this module help to deal with augments, reduplications and also internal augment,
 but the results always need to be checked against a database of Modern Greek words.
@@ -184,7 +242,31 @@ This function add a recessive accent and removes augment where it's necessary, t
 TRANSCRIPTION
 =============
 
->>> from modern_greek_accentuation.transcription import *
+>>> from src.transcription import *
+
+>>> simple_transcription('Βασίλης')
+'Basilhs'
+
+>>> simple_transcription('Ευρώπη')
+'Europh'
+
+>>> erasmian_transcription('Ἡρόδοτος')
+'Herodotos'
+
+>>> modern_transcription('Βασίλης')
+'Wasilis'
+
+>>> modern_transcription('ευχαριστώ')
+'efcharisto'
+
+>>> modern_transcription('διεύθυνση')
+'dhiefthinsi'
+
+>>> modern_transcription('διαβατήριο')
+'dhiawatirio'
+
+>>> modern_transcription('χρησιμοποιώ')
+'chrisimopio'
 
 >>> simple_transcription('Βασίλης')
 'Basilhs'

@@ -1,6 +1,6 @@
 from unittest import TestCase
-from modern_greek_accentuation import accentuation
-from modern_greek_accentuation.resources import ANTEPENULTIMATE, PENULTIMATE, ULTIMATE
+from src import accentuation
+from src.resources import ANTEPENULTIMATE, PENULTIMATE, ULTIMATE
 
 
 class RemoveAccent(TestCase):

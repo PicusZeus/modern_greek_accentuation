@@ -1,5 +1,5 @@
 from unittest import TestCase
-from modern_greek_accentuation import syllabify
+from src import syllabify
 
 
 class Syllabification(TestCase):

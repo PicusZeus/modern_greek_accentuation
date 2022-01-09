@@ -1,5 +1,5 @@
 from unittest import TestCase
-from modern_greek_accentuation import augmentify
+from src import augmentify
 
 
 class Augmentation(TestCase):
