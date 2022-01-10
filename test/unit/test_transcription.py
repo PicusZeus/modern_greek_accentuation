@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src import transcription
+from modern_greek_accentuation import transcription
 
 
 class TranscriptionSimple(TestCase):
