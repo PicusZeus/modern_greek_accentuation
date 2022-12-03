@@ -30,7 +30,7 @@ remove_non_accent_diacritics_without_dierisis = remove_diacritics(YPOGEGRAMMENI,
 remove_diaer = remove_diacritics(DIAERESIS)
 
 
-def convert_to_monotonic(sentence_or_word):
+def convert_to_monotonic(sentence_or_word, one_syllable_rule=True):
     sentence_or_word = remove_non_accent_diacritics_without_dierisis(sentence_or_word)
     sentence_or_word = unicodedata.normalize("NFD", sentence_or_word)
     for polytonic_accent in [VARIA, PERISPOMENI]:
@@ -42,12 +42,16 @@ def convert_to_monotonic(sentence_or_word):
     if sentence_or_word[-1] == ';':
         excluded = ['ή', 'πού', 'πώς']
     for word in words:
-        if count_syllables(word) == 1 and word not in excluded:
-            removed_one_syllable_accent.append(remove_all_diacritics(word))
+        if one_syllable_rule:
+            if count_syllables(word) == 1 and word not in excluded:
+                removed_one_syllable_accent.append(remove_all_diacritics(word))
+            else:
+                removed_one_syllable_accent.append(word)
         else:
-            removed_one_syllable_accent.append(word)
+            return ' '.join(words)
 
     return ' '.join(removed_one_syllable_accent)
+
 
 
 def is_accented(syllable):

@@ -1,4 +1,4 @@
-from .resources import *
+from modern_greek_accentuation.resources import *
 
 
 def _cut_off_syllable(word, true_syllabification=False):
@@ -8,8 +8,6 @@ def _cut_off_syllable(word, true_syllabification=False):
     :param true_syllabification: if true i before vowels treated as consonants
     :return: returns tuple syllable and rest of the word
     """
-
-
 
     all_letters = list(word)
     all_letters.reverse()

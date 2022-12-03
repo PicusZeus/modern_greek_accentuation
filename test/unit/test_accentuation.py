@@ -78,3 +78,7 @@ class PutAccent(TestCase):
         r = accentuation.convert_to_monotonic("ἐν τῷ πρόσθεν λόγῳ δεδήλωται.")
         self.assertEqual('εν τω πρόσθεν λόγω δεδήλωται.', r)
 
+    def test_convert_to_monotonic(self):
+        r = accentuation.convert_to_monotonic('δηώ', one_syllable_rule=False)
+        self.assertEqual('δηώ', r)
+
