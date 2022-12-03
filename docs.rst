@@ -1,8 +1,4 @@
 
-    Doctest
-
-    run ``python -m doctest -v docs.rst`` to test.
-
 
 Accentuation
 

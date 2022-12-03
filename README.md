@@ -24,6 +24,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.521 Added exclusion flag to convert_to_monotonic (one_sylleble_rule)
  * 0.511 Improvement in code structure
  * 0.2.6 Fixed issue with converting to monotonic function, when it would strip word also from dieresis
  * 0.2.5 Small improvements to augmentify module, now it deals correctly with accented prefixes when creating augmented stems
