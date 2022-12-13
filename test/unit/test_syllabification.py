@@ -6,7 +6,10 @@ class Syllabification(TestCase):
 
     def test_simple_syllabification(self):
         r = syllabify.modern_greek_syllabify('άνθρωπος')
+        r1 = syllabify.modern_greek_syllabify('ΆΝΘΡΩΠΟΣ')
         self.assertListEqual(['άν', 'θρω', 'πος'], r)
+        self.assertListEqual(['ΆΝ', 'ΘΡΩ', 'ΠΟΣ'], r1)
+
 
     def test_true_syllabification(self):
         r1 = syllabify.modern_greek_syllabify('ρολοϊού')

@@ -36,7 +36,9 @@ class CheckAccentuation(TestCase):
 
     def test_where_is_accent_antepunultimate(self):
         r = accentuation.where_is_accent("άνθρωπος")
+        r1 = accentuation.where_is_accent('Άγγελος')
         self.assertEqual(ANTEPENULTIMATE, r)
+        self.assertEqual(ANTEPENULTIMATE, r1)
 
 
     def test_where_is_accent_penultimate(self):

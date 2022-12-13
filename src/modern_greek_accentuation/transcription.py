@@ -1,9 +1,9 @@
-
 import re
+import unicodedata
 from .accentuation import remove_all_diacritics
 from .syllabify import modern_greek_syllabify
 from .resources import vowels, ancient_tr, modern_tr, ROUGH
-import unicodedata
+
 
 """
 TO DO: add transcription to greeklish
@@ -21,6 +21,7 @@ def simple_transcription(word, h=None, modern=False):
     """
 
     syllabified = modern_greek_syllabify(word, true_syllabification=False)
+
 
     transcr_meth = ancient_tr
     if modern:

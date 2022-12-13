@@ -14,7 +14,7 @@ def _cut_off_syllable(word, true_syllabification=False):
 
     for index, letter in enumerate(all_letters):
 
-        if letter in vowels:
+        if letter.lower() in vowels:
             border = index
             # if there is sth else
             if len(all_letters[border:]) > 1:
@@ -86,8 +86,11 @@ def _divide_into_syllables(word, syllables=[], true_syllabification=False):
     # if true_syllabification off, it takes into consideration unaccented 'i'.
 
     rest, syllable = _cut_off_syllable(word, true_syllabification=true_syllabification)
+
     if syllable:
         syllables.append(syllable)
+
+
     if rest and len(syllables) > 0:
 
         rest, syllables = _divide_into_syllables(rest, syllables, true_syllabification=true_syllabification)
@@ -111,6 +114,7 @@ def modern_greek_syllabify(word, true_syllabification=True):
     :param true_syllabification: if you want to divide word treating 'i' always as vowel, give it a False value
     :return: Array with syllables
     """
+
     rest, syllables = _divide_into_syllables(word, [], true_syllabification=true_syllabification)
     syllables.reverse()
 
@@ -119,13 +123,13 @@ def modern_greek_syllabify(word, true_syllabification=True):
 
 def has_vowel(word):
     for letter in word:
-        if letter in vowels:
+        if letter.lower() in vowels:
             return True
     return False
 
 
 def is_vowel(letter):
-    if letter in vowels:
+    if letter.lower() in vowels:
         return True
     return False
 

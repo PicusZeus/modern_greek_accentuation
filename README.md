@@ -24,6 +24,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.525 Fixed bug with syllabification of capitalized words
  * 0.522 Added exclusion flag to convert_to_monotonic (one_sylleble_rule)
  * 0.511 Improvement in code structure
  * 0.2.6 Fixed issue with converting to monotonic function, when it would strip word also from dieresis
