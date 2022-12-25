@@ -24,6 +24,14 @@ class Augmentation(TestCase):
         al = list(augmentify.add_augment('συλλάμβανα'))
         self.assertIn('συνελάμβανα', al)
 
+    def test_pairno(self):
+        # if form is identical to one of prefixes
+        self.assertEqual(
+            augmentify.add_augment('πάρα'),
+            ['έπαρα'],
+        )
+        self.assertNotIn('παρέα', augmentify.add_augment('πάρα'))
+
 
 class PutAccentAndAugmentify(TestCase):
 

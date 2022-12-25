@@ -14,10 +14,11 @@ def add_augment(not_augmented_form):
     results = [put_accent_on_the_antepenultimate(not_augmented_form), put_accent_on_the_antepenultimate(
         not_augmented_form, False), not_augmented_form]
     for pref in prefixes_before_augment.keys():
+        pref = pref.strip()
+        verb = not_augmented_form[len(pref):]
+        if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]):
 
-        if pref.strip() == remove_all_diacritics(not_augmented_form[:len(pref.strip())]):
 
-            verb = not_augmented_form[len(pref.strip()):]
             sub_res = [put_accent_on_the_antepenultimate(verb)]
 
             if count_syllables(verb) in [2, 3] and verb[0] in ['α', 'ε', 'ο', 'ά', 'έ', 'ό']:
