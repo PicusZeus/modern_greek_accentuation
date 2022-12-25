@@ -32,6 +32,17 @@ class Augmentation(TestCase):
         )
         self.assertNotIn('παρέα', augmentify.add_augment('πάρα'))
 
+    def test_airo(self):
+        self.assertEqual(
+            set(augmentify.add_augment('αίρα')),
+            {'ήιρα', 'ήρα'}
+        )
+
+    def test_parmenos(self):
+        self.assertEqual(
+            set(augmentify.add_augment('παρμένος')),
+            {'παρμένος', 'επαρμένος', 'πεπαρμένος'}
+        )
 
 class PutAccentAndAugmentify(TestCase):
 

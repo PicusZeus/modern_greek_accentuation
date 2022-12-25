@@ -16,7 +16,8 @@ def add_augment(not_augmented_form):
     for pref in prefixes_before_augment.keys():
         pref = pref.strip()
         verb = not_augmented_form[len(pref):]
-        if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]):
+        if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]) \
+                and remove_all_diacritics(verb) != 'μενος':
 
 
             sub_res = [put_accent_on_the_antepenultimate(verb)]
@@ -25,10 +26,16 @@ def add_augment(not_augmented_form):
                 if verb[0] in ['ε', 'α', 'έ', 'ά']:
                     form = put_accent_on_the_antepenultimate('η' + verb[1:])
                     sub_res.append(form)
-                if verb[0] in ['ε', 'έ']:
-                    form = put_accent_on_the_antepenultimate('ει' + verb[1:])
-                    sub_res.append(form)
-                if verb[0] in ['ο' 'ό']:
+                    if verb[0] in ['ε', 'έ']:
+                        form = put_accent_on_the_antepenultimate('ει' + verb[1:])
+                        sub_res.append(form)
+                    if verb[:2] in ['αι', 'αί', 'ει', 'εί']:
+
+                        form = put_accent_on_the_antepenultimate('η' + verb[2:])
+
+                        sub_res.append(form)
+
+                elif verb[0] in ['ο' 'ό']:
                     form = put_accent_on_the_antepenultimate('ω' + verb[1:])
                     sub_res.append(form)
             elif verb[-1] in ['α', 'ε']:
@@ -69,7 +76,7 @@ def add_augment(not_augmented_form):
                 sub_res.append(verb)
 
             # perfect participle
-            elif verb[-2:] == 'ος':
+            if verb[-2:] == 'ος':
                 sub_res.append(verb)
                 if verb[0] not in vowels:
                     # reduplication
@@ -79,6 +86,9 @@ def add_augment(not_augmented_form):
                     form = 'ε' + verb
                     sub_res.append(form)
 
+
+
+
             sub_res = [prefixes_before_augment[pref] + augmented for augmented in sub_res]
 
             results.extend(sub_res)
@@ -87,7 +97,9 @@ def add_augment(not_augmented_form):
             results = list(set(results))
             results = [f for f in results if count_syllables(f) > 2 or f[:-1] in ['πήγ', 'πήρ', 'είχ', 'ήρθ',
                                                                                  'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
-                                                                                 'βήκ', 'είπ', 'είδ', 'ήπι']]
+                                                                                 'βήκ', 'είπ', 'είδ', 'ήπι', 'ήρ']]
+    if not_augmented_form[-2:] == 'ος':
+        results = [put_accent_on_the_penultimate(v) for v in results]
 
     return results
 
