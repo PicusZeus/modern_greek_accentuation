@@ -44,6 +44,12 @@ class Augmentation(TestCase):
             {'παρμένος', 'επαρμένος', 'πεπαρμένος'}
         )
 
+    def test_metaggizw(self):
+        self.assertEqual(
+            set(augmentify.add_augment('μετάγγισα')),
+            {'μετάγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα', 'μετγγίσα'}
+        )
+
 class PutAccentAndAugmentify(TestCase):
 
     def test_put_accent_ekane(self):
