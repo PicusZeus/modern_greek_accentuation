@@ -1,4 +1,4 @@
-from .syllabify import *
+from modern_greek_accentuation.syllabify import *
 import unicodedata
 
 

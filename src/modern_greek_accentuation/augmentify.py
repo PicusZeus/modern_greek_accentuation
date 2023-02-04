@@ -1,5 +1,5 @@
-from .accentuation import *
-from .resources import *
+from modern_greek_accentuation.accentuation import *
+from modern_greek_accentuation.resources import *
 
 
 def add_augment(not_augmented_form):

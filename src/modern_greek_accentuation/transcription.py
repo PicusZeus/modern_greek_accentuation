@@ -1,9 +1,8 @@
-import re
 import unicodedata
-from .accentuation import remove_all_diacritics
-from .syllabify import modern_greek_syllabify
-from .resources import vowels, ancient_tr, modern_tr, ROUGH
-
+from modern_greek_accentuation.accentuation import remove_all_diacritics
+from modern_greek_accentuation.syllabify import modern_greek_syllabify
+from modern_greek_accentuation.resources import vowels, ancient_tr, modern_tr, ROUGH
+import re
 
 """
 TO DO: add transcription to greeklish
@@ -30,6 +29,7 @@ def simple_transcription(word, h=None, modern=False):
     transcribed_syllables = []
 
     for syllable in syllabified:
+        s = syllable
         syllable = remove_all_diacritics(syllable)
         transcribed_syllable = ''
         while True:
@@ -41,7 +41,8 @@ def simple_transcription(word, h=None, modern=False):
                 transcription = transcr_meth['vowels'][syllable[0].lower()]
 
                 transcribed_syllable += transcription
-                if h:
+                if h and 'ch' not in transcribed_syllable:
+                    # ch is transcription of χ
                     transcribed_syllable = transcribed_syllable.replace('h', h)
 
                 syllable = syllable[1:]

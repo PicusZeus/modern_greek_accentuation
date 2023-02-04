@@ -12,6 +12,22 @@ class TranscriptionSimple(TestCase):
         r = transcription.simple_transcription('Ευρώπη')
         self.assertEqual('Europh', r)
 
+    def test_exo(self):
+        r = transcription.simple_transcription('έχω')
+        self.assertEqual('echo', r)
+
+    def test_kai(self):
+        r = transcription.simple_transcription('και')
+        self.assertEqual('kai', r)
+
+    def test_thumamai(self):
+        r = transcription.simple_transcription('θυμάμαι')
+        self.assertEqual('thumamai', r)
+
+    def test_koulouri(self):
+        r = transcription.simple_transcription('κουλούρι')
+        self.assertEqual('koulouri', r)
+
 
 class TranscriptionErasmian(TestCase):
 
@@ -19,6 +35,13 @@ class TranscriptionErasmian(TestCase):
         r = transcription.erasmian_transcription('Ἡρόδοτος')
         self.assertEqual('Herodotos', r)
 
+    def test_exo(self):
+        r = transcription.erasmian_transcription('έχω')
+        self.assertEqual('echo', r)
+
+    def test_kai(self):
+        r = transcription.erasmian_transcription('και')
+        self.assertEqual('kai', r)
 
 class TranscriptionModern(TestCase):
 
@@ -37,5 +60,13 @@ class TranscriptionModern(TestCase):
     def test_xrisimopoio(self):
         r = transcription.modern_transcription('χρησιμοποιώ')
         self.assertEqual('chrisimopio', r)
+
+    def test_exo(self):
+        r = transcription.modern_transcription('έχω')
+        self.assertEqual('echo', r)
+
+    def test_kai(self):
+        r = transcription.modern_transcription('και')
+        self.assertEqual('kie', r)
 
 

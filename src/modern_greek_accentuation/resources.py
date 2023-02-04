@@ -98,7 +98,7 @@ diphtongs = ['αύ',
 
 
 
-vowels_anc_transcription = {'α': 'a', 'ε': 'e', 'ι': 'i', 'υ': 'y', 'ο': 'o', 'ω': 'o',
+vowels_anc_transcription = {'α': 'a', 'ε': 'e', 'ι': 'i', 'υ': 'u', 'ο': 'o', 'ω': 'o',
                             'η': 'h', 'ϊ': 'i', 'ϋ': 'u'}
 
 vowels_mod_transcription = {'α': 'a', 'ε': 'e', 'ι': 'i', 'υ': 'i', 'ο': 'o', 'ω': 'o', 'η': 'i',
@@ -106,10 +106,11 @@ vowels_mod_transcription = {'α': 'a', 'ε': 'e', 'ι': 'i', 'υ': 'i', 'ο': 'o
 
 consonants_anc_transcription = {'β': 'b', 'γ': 'g', 'δ': 'd', 'θ':'th', 'ζ': 'z', 'λ':'l', 'κ':'k',
                                 'μ':'m', 'ν':'n', 'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f',
-                                'ψ':'ps', 'ξ':'ks'}
+                                'ψ':'ps', 'ξ':'ks', 'χ': 'ch'}
 
 consonants_mod_transcription = {'β': 'w', 'γ': 'gh', 'δ': 'dh', 'θ':'th', 'λ':'l', 'μ':'m', 'ν':'n',
-                                'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f', 'ψ':'ps', 'ξ':'ks', 'χ': 'ch'}
+                                'π':'p', 'ρ':'r', 'σ':'s', 'ς':'s', 'τ':'t', 'φ':'f', 'ψ':'ps', 'ξ':'ks',
+                                'χ': 'ch', 'κ': 'k'}
 
 digraphs_anc_transcirption = {'αυ': 'au', 'ευ': 'eu', 'γγ': 'ng', 'γκ': 'nk', 'γχ': 'nch', 'ου': 'ou'}
 
