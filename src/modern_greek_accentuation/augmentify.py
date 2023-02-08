@@ -19,7 +19,6 @@ def add_augment(not_augmented_form):
         if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]) \
                 and remove_all_diacritics(verb) != 'μενος':
 
-
             sub_res = [put_accent_on_the_antepenultimate(verb)]
 
             if count_syllables(verb) in [2, 3] and verb[0] in ['α', 'ε', 'ο', 'ά', 'έ', 'ό']:
@@ -30,7 +29,6 @@ def add_augment(not_augmented_form):
                         form = put_accent_on_the_antepenultimate('ει' + verb[1:])
                         sub_res.append(form)
                     if verb[:2] in ['αι', 'αί', 'ει', 'εί']:
-
                         form = put_accent_on_the_antepenultimate('η' + verb[2:])
 
                         sub_res.append(form)
@@ -47,6 +45,7 @@ def add_augment(not_augmented_form):
             # archaic aorist
 
             elif verb[-2:] in ['ην', 'ον'] or verb[-1] == 'η':
+
                 if verb[0] in ['α', 'ά']:
                     form = 'η' + verb[1:]
                     sub_res.append(form)
@@ -86,18 +85,16 @@ def add_augment(not_augmented_form):
                     form = 'ε' + verb
                     sub_res.append(form)
 
+            sub_res_1 = [prefixes_before_augment[pref] + augmented for augmented in sub_res]
+            sub_res_2 = [pref + augmented for augmented in sub_res]
 
-
-
-            sub_res = [prefixes_before_augment[pref] + augmented for augmented in sub_res]
-
-            results.extend(sub_res)
+            results.extend(sub_res_1 + sub_res_2)
 
             # filter_out irregularities
             results = list(set(results))
             results = [f for f in results if count_syllables(f) > 2 or f[:-1] in ['πήγ', 'πήρ', 'είχ', 'ήρθ',
-                                                                                 'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
-                                                                                 'βήκ', 'είπ', 'είδ', 'ήπι', 'ήρ']]
+                                                                                  'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
+                                                                                  'βήκ', 'είπ', 'είδ', 'ήπι', 'ήρ']]
     if not_augmented_form[-2:] == 'ος':
         results = [put_accent_on_the_penultimate(v) for v in results]
 
@@ -112,7 +109,7 @@ def deaugment_prefixed_stem(stem):
 
     for pref in dict_of_augmented_prefixes.items():
 
-        if len(stem) > len(pref[1]) and pref[1] == stem[:len(pref[1])]:
+        if len(stem) > len(pref[1]) and pref[1] == remove_all_diacritics(stem[:len(pref[1])]):
             return pref[0].strip() + stem[len(pref[1]):]
 
     return stem
@@ -130,6 +127,8 @@ def deaugment_stem(stem, lemma):
             deagmented_stem = stem[1:]
             if lemma[0] in ['ε', 'α'] and stem[0] in ['ή']:
                 deagmented_stem = lemma[0] + deagmented_stem
+            elif lemma[0] == 'ε':
+                deagmented_stem = stem
             return deagmented_stem
     return None
 

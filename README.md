@@ -24,6 +24,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.545 Fixed issues with augmentation and reduplication (prefix en)
  * 0.541 Fixed bugs in transcription module.
  * 0.531 Fixed small bug with resources data.
  * 0.530 Fixed bug when during augmentation prefixes equal to a form or longer by 1 character were allowed. Fixed bug with augmentation/reduplication of ppart, where it until now returned wrongly accented forms.

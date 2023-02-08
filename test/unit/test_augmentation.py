@@ -47,7 +47,7 @@ class Augmentation(TestCase):
     def test_metaggizw(self):
         self.assertEqual(
             set(augmentify.add_augment('μετάγγισα')),
-            {'μετάγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα', 'μετγγίσα'}
+            {'μετάγγισα', 'μεταγγίσα', 'μεταέγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα', 'μετγγίσα'}
         )
 
 class PutAccentAndAugmentify(TestCase):
