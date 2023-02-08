@@ -110,7 +110,19 @@ def deaugment_prefixed_stem(stem):
     for pref in dict_of_augmented_prefixes.items():
 
         if len(stem) > len(pref[1]) and pref[1] == remove_all_diacritics(stem[:len(pref[1])]):
-            return pref[0].strip() + stem[len(pref[1]):]
+            prefix = pref[0].strip()
+            verb = stem[len(pref[1]):]
+            if prefix[-1] == 'ν':
+                if verb[0] in ['γ', 'χ', 'κ']:
+                    prefix = prefix[:-1] + 'γ'
+                if verb[0] == 'λ':
+                    prefix = prefix[:-1] + 'λ'
+                if verb[0] in ['μ' 'φ', 'β']:
+                    prefix = prefix[:-1] + 'μ'
+                if verb[0] == 'σ':
+                    prefix = prefix[:-1]
+
+            return prefix + verb
 
     return stem
 
