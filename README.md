@@ -24,6 +24,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.555 Added some missing augmented prefixes
  * 0.549 Improved handling of inner augment, consonant agreement
  * 0.545 Fixed issues with augmentation and reduplication (prefix en)
  * 0.541 Fixed bugs in transcription module.
