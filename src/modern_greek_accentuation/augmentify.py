@@ -22,7 +22,7 @@ def add_augment(not_augmented_form):
             sub_res = [put_accent_on_the_antepenultimate(verb)]
 
             if count_syllables(verb) in [2, 3] and verb[0] in ['α', 'ε', 'ο', 'ά', 'έ', 'ό']:
-                if verb[0] in ['ε', 'α', 'έ', 'ά']:
+                if verb[0] in ['ε', 'α', 'έ', 'ά'] and verb not in ['εγμένος']:
                     form = put_accent_on_the_antepenultimate('η' + verb[1:])
                     sub_res.append(form)
                     if verb[0] in ['ε', 'έ']:
@@ -137,7 +137,7 @@ def deaugment_stem(stem, lemma):
     if count_syllables(stem, true_syllabification=False) == 2 and stem[-1] != 'ι':
         if stem[0] in ['έ', 'ή']:
             deagmented_stem = stem[1:]
-            if lemma[0] in ['ε', 'α'] and stem[0] in ['ή']:
+            if lemma[0] in ['ε', 'α', 'ά', 'έ'] and stem[0] in ['ή']:
                 deagmented_stem = lemma[0] + deagmented_stem
             elif lemma[0] == 'ε':
                 deagmented_stem = stem
