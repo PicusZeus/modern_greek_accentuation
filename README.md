@@ -24,6 +24,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.575 Added handling of prefixes with augment h to a
  * 0.565 Fixed issues with augments for verbs that are build from άγω
  * 0.555 Added some missing augmented prefixes
  * 0.549 Improved handling of inner augment, consonant agreement
