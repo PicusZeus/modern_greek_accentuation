@@ -41,7 +41,7 @@ class Augmentation(TestCase):
     def test_parmenos(self):
         self.assertEqual(
             set(augmentify.add_augment('παρμένος')),
-            {'παρμένος', 'επαρμένος', 'πεπαρμένος'}
+            {'παρμένος', 'πεπαρμένος'}
         )
 
     def test_metaggizw(self):
