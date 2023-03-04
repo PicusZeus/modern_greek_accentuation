@@ -95,7 +95,8 @@ def add_augment(not_augmented_form):
             results = list(set(results))
             results = [f for f in results if count_syllables(f) > 2 or f[:-1] in ['πήγ', 'πήρ', 'είχ', 'ήρθ',
                                                                                   'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
-                                                                                  'βήκ', 'είπ', 'είδ', 'ήπι', 'ήρ']]
+                                                                                  'βήκ', 'είπ', 'είδ', 'ήπι', 'ήρ',
+                                                                                  'ήχθ', 'ήγ']]
     if not_augmented_form[-2:] == 'ος':
         results = [put_accent_on_the_penultimate(v) for v in results]
 
