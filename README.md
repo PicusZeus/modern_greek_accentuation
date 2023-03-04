@@ -24,6 +24,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.585 Fixed bug in modern transcription
  * 0.581 Allow creating augmented 2 syllable forms for agw.
  * 0.580 Better handling of past perf part augmentation (do not do it, if there is only one consonant at the beginning)
  * 0.575 Added handling of prefixes with augment h to a

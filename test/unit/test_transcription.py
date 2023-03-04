@@ -4,6 +4,10 @@ from modern_greek_accentuation import transcription
 
 class TranscriptionSimple(TestCase):
 
+    def test_mow(self):
+        r = transcription.simple_transcription('μοβ')
+        self.assertEqual('mob', r)
+
     def test_Basilhs(self):
         r = transcription.simple_transcription('Βασίλης')
         self.assertEqual('Basilhs', r)
@@ -48,6 +52,10 @@ class TranscriptionModern(TestCase):
     def test_Wasilis(self):
         r = transcription.modern_transcription('Βασίλης')
         self.assertEqual('Wasilis', r)
+
+    def test_mow(self):
+        r = transcription.modern_transcription('μοβ')
+        self.assertEqual('mof', r)
 
     def test_euxaristo(self):
         r = transcription.modern_transcription('ευχαριστώ')

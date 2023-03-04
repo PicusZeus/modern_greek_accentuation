@@ -124,13 +124,16 @@ def modern_transcription(word):
         ws = re.finditer('w', transcription)
         for w in ws:
             index = w.start()
-            if len(transcription) > index:
+            if len(transcription) > index + 1:
 
                 if transcription[index+1] in ['t', 'p', 'k', 's'] or len(transcription) > index + 3 and transcription[index+1:index+3] == 'ch':
                     transcription = transcription[:index] + 'f' + transcription[index+1:]
 
             else:
+                transcription = list(transcription)
+
                 transcription[index] = 'f'
+                transcription = ''.join(transcription)
     return transcription
 
 
