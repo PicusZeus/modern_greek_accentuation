@@ -16,6 +16,7 @@ def add_augment(not_augmented_form):
     for pref in prefixes_before_augment.keys():
         pref = pref.strip()
         verb = not_augmented_form[len(pref):]
+
         if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]) \
                 and remove_all_diacritics(verb) != 'μενος':
 
@@ -33,10 +34,11 @@ def add_augment(not_augmented_form):
 
                         sub_res.append(form)
 
+
                 elif verb[0] in ['ο' 'ό']:
                     form = put_accent_on_the_antepenultimate('ω' + verb[1:])
                     sub_res.append(form)
-            elif verb[-1] in ['α', 'ε']:
+            elif verb[-1] in ['α', 'ά', 'ε']:
                 form = put_accent_on_the_antepenultimate('ε' + verb)
                 if verb[:-1] in ['θέλ', 'ξέρ']:
                     form = put_accent_on_the_antepenultimate('η' + verb)
@@ -44,11 +46,14 @@ def add_augment(not_augmented_form):
 
             # archaic aorist
 
-            elif verb[-2:] in ['ην', 'ον'] or verb[-1] == 'η':
+            if verb[-2:] in ['ην', 'ον'] or verb[-1] == 'η':
 
                 if verb[0] in ['α', 'ά']:
                     form = 'η' + verb[1:]
                     sub_res.append(form)
+                    if verb == 'άστη':
+                        sub_res.append('έστη')
+
                 elif verb[0] in ['ε', 'έ']:
                     form = 'ει' + verb[1:]
                     sub_res.append(form)
