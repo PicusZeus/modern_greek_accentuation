@@ -24,6 +24,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.590 Added more prefixes
+ * 0.589 Added prefix antikata
  * 0.587 fixed augmentation logic for isthmi
  * 0.585 Fixed bug in modern transcription
  * 0.581 Allow creating augmented 2 syllable forms for agw.
