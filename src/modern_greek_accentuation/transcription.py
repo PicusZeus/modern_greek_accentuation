@@ -21,7 +21,6 @@ def simple_transcription(word, h=None, modern=False):
 
     syllabified = modern_greek_syllabify(word, true_syllabification=False)
 
-
     transcr_meth = ancient_tr
     if modern:
         transcr_meth = modern_tr
@@ -61,7 +60,8 @@ def simple_transcription(word, h=None, modern=False):
                         transcribed_syllable = transcribed_syllable.replace(ke, replacement)
                     transcribed_syllable = transcribed_syllable.replace('ghi', 'j')
 
-                    if 'j' in transcribed_syllable and not set(list(transcribed_syllable)).intersection({'e', 'o', 'a', 'u', 'i'}):
+                    if 'j' in transcribed_syllable and not set(list(transcribed_syllable)).intersection(
+                            {'e', 'o', 'a', 'u', 'i'}):
                         transcribed_syllable = transcribed_syllable.replace('j', 'ji')
                 break
 
@@ -126,8 +126,9 @@ def modern_transcription(word):
             index = w.start()
             if len(transcription) > index + 1:
 
-                if transcription[index+1] in ['t', 'p', 'k', 's'] or len(transcription) > index + 3 and transcription[index+1:index+3] == 'ch':
-                    transcription = transcription[:index] + 'f' + transcription[index+1:]
+                if transcription[index + 1] in ['t', 'p', 'k', 's'] or len(transcription) > index + 3 and transcription[
+                                                                                                          index + 1:index + 3] == 'ch':
+                    transcription = transcription[:index] + 'f' + transcription[index + 1:]
 
             else:
                 transcription = list(transcription)
@@ -135,5 +136,3 @@ def modern_transcription(word):
                 transcription[index] = 'f'
                 transcription = ''.join(transcription)
     return transcription
-
-

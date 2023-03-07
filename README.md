@@ -24,6 +24,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.591 Added another missing prefix
  * 0.590 Added more prefixes
  * 0.589 Added prefix antikata
  * 0.587 fixed augmentation logic for isthmi
