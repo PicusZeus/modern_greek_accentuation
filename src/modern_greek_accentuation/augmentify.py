@@ -124,9 +124,9 @@ def deaugment_prefixed_stem(stem):
                     prefix = prefix[:-1] + 'γ'
                 if verb[0] == 'λ':
                     prefix = prefix[:-1] + 'λ'
-                if verb[0] in ['μ' 'φ', 'β']:
+                if verb[0] in ['μ' 'φ', 'β', 'π']:
                     prefix = prefix[:-1] + 'μ'
-                if verb[0] == 'σ':
+                if verb[0] in ['σ', 'ζ']:
                     prefix = prefix[:-1]
 
             return prefix + verb
