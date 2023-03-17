@@ -87,7 +87,7 @@ def add_augment(not_augmented_form):
                     form = verb[0] + 'ε' + verb
                     sub_res.append(form)
                     # augmentation
-                    if verb[1] not in vowels:
+                    if verb[1] not in vowels or verb[0] in ['ξ', 'ψ']:
                         form = 'ε' + verb
                         sub_res.append(form)
 

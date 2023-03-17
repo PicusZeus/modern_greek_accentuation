@@ -24,6 +24,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.593 Fixed handling of augment in past perf participles, it's possible not only before clusters, but also before double consonants ψ ξ.
  * 0.592 Fixed handling of vowels before prefix
  * 0.591 Added another missing prefix
  * 0.590 Added more prefixes
