@@ -9,7 +9,7 @@ TO DO: add transcription to greeklish
 """
 
 
-def simple_transcription(word, h=None, modern=False):
+def simple_transcription(word: str, h=None, modern=False) -> str:
     """
     This is the simplest possible transcription mostly based on Erasmian pronunciation. Such a transcription
     can be used for identifying words written with orthographic errors or written with latin chars.
@@ -74,7 +74,7 @@ def simple_transcription(word, h=None, modern=False):
     return transcribed_word
 
 
-def capitalize_or_upper_transcription(word, transcription):
+def capitalize_or_upper_transcription(word: str, transcription: str) -> str:
     if word.capitalize() == word:
         transcribed_word = transcription.capitalize()
     elif word.isupper():
@@ -84,7 +84,7 @@ def capitalize_or_upper_transcription(word, transcription):
     return transcribed_word
 
 
-def has_rough_breathing(word):
+def has_rough_breathing(word: str) -> bool:
     decomposed = unicodedata.normalize("NFD", word[0])
 
     if decomposed[0].lower() in vowels:
@@ -97,7 +97,7 @@ def has_rough_breathing(word):
     return False
 
 
-def erasmian_transcription(word):
+def erasmian_transcription(word: str) -> str:
     """
     It's basically ``simple_transcription`` but it renders rough breathing as 'h'
     :param word: word written in greek
@@ -111,7 +111,7 @@ def erasmian_transcription(word):
     return transcription
 
 
-def modern_transcription(word):
+def modern_transcription(word: str) -> str:
     """
     It has nothing to do with phonetic transcription in international phonetic alphabet. It's thought only for Polish
     readers as a simple way to get transcription of Modern Greek texts accessible to lay people
@@ -125,11 +125,9 @@ def modern_transcription(word):
         for w in ws:
             index = w.start()
             if len(transcription) > index + 1:
-
                 if transcription[index + 1] in ['t', 'p', 'k', 's'] or len(transcription) > index + 3 and transcription[
                                                                                                           index + 1:index + 3] == 'ch':
                     transcription = transcription[:index] + 'f' + transcription[index + 1:]
-
             else:
                 transcription = list(transcription)
 
