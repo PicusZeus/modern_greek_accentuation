@@ -1,8 +1,10 @@
+from __future__ import annotations
 from modern_greek_accentuation.accentuation import *
 from modern_greek_accentuation.resources import *
+from typing import List
 
 
-def add_augment(not_augmented_form):
+def add_augment(not_augmented_form: str) -> List[str]:
     """
     :param not_augmented_form: past verb form without an augment or perfect participle.
     only for creating regular past tenses. deals with prefixes.
@@ -108,7 +110,7 @@ def add_augment(not_augmented_form):
     return results
 
 
-def deaugment_prefixed_stem(stem):
+def deaugment_prefixed_stem(stem: str) -> str:
     """
     :param stem: verb stem with cut off ending, prefixed
     :return: check if the stem is augmented and if it is, returns an anaugmented stem
@@ -134,7 +136,7 @@ def deaugment_prefixed_stem(stem):
     return stem
 
 
-def deaugment_stem(stem, lemma):
+def deaugment_stem(stem: str, lemma: str) -> str | None:
     """
     :param stem: verb stem
     :param lemma: lemma is needed to check if an anaugmented stem begins on e or a
@@ -152,7 +154,7 @@ def deaugment_stem(stem, lemma):
     return None
 
 
-def put_accent_on_past_tense(past_form, present_form):
+def put_accent_on_past_tense(past_form: str, present_form: str) -> str:
     """
     :param past_form:  a result of adding an ending to a past stem
     :param present_form:

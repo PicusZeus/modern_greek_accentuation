@@ -1,7 +1,8 @@
 from modern_greek_accentuation.resources import *
+from typing import List
 
 
-def _cut_off_syllable(word, true_syllabification=False):
+def _cut_off_syllable(word: str, true_syllabification=False) -> tuple:
     """
     it is more complicated than it should be, but modern Greek rules on accentuation are somewhat convoluted
     :param word:
@@ -81,7 +82,7 @@ def _cut_off_syllable(word, true_syllabification=False):
     return word, None
 
 
-def _divide_into_syllables(word, syllables=[], true_syllabification=False):
+def _divide_into_syllables(word: str, syllables=[], true_syllabification=False) -> tuple:
     # helping function, returns word chopped into syllables in reverse order,
     # if true_syllabification off, it takes into consideration unaccented 'i'.
 
@@ -89,7 +90,6 @@ def _divide_into_syllables(word, syllables=[], true_syllabification=False):
 
     if syllable:
         syllables.append(syllable)
-
 
     if rest and len(syllables) > 0:
 
@@ -103,7 +103,7 @@ def _divide_into_syllables(word, syllables=[], true_syllabification=False):
     return rest, syllables
 
 
-def modern_greek_syllabify(word, true_syllabification=True):
+def modern_greek_syllabify(word: str, true_syllabification=True) -> List[str]:
     """
     There is a problem as to how treat 'i' before vowels, as it is inconsistent across Modern Greek
     (χρη-σι-μο-ποι-ώ, υ-γι-ής, κα-τα-πιώ, και-νού-ργιο, Γιε-ώ-ργι-ος κτλ.), which mainly comes from the injection of
@@ -121,20 +121,20 @@ def modern_greek_syllabify(word, true_syllabification=True):
     return syllables
 
 
-def has_vowel(word):
+def has_vowel(word: str) -> bool:
     for letter in word:
         if letter.lower() in vowels:
             return True
     return False
 
 
-def is_vowel(letter):
+def is_vowel(letter: str) -> bool:
     if letter.lower() in vowels:
         return True
     return False
 
 
-def count_syllables(word, true_syllabification=True):
+def count_syllables(word: str, true_syllabification=True) -> int:
     # modern greek only
 
     syllables = modern_greek_syllabify(word, true_syllabification=true_syllabification)

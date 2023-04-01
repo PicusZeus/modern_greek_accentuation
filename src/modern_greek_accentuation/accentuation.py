@@ -1,5 +1,8 @@
+from __future__ import annotations
 from modern_greek_accentuation.syllabify import *
+
 import unicodedata
+from typing import List, Union
 
 
 def remove_diacritics(*diacritics, diaeresis=True):
@@ -8,7 +11,7 @@ def remove_diacritics(*diacritics, diaeresis=True):
     :param diaeresis:   if dieresis is true, it checks if dieresis is expected because of accent position and puts it.
     :return:
     """
-    def _(text, dieresis=diaeresis):
+    def _(text: str, dieresis=diaeresis) -> str:
         if dieresis:
             dieresis_dipht = {'όι': 'οϊ', "άι": 'αϊ', "έι": 'εϊ', 'ύι': 'υϊ', 'όυ': 'οϋ'}
             for d in dieresis_dipht.keys():
@@ -30,7 +33,7 @@ remove_non_accent_diacritics_without_dierisis = remove_diacritics(YPOGEGRAMMENI,
 remove_diaer = remove_diacritics(DIAERESIS)
 
 
-def convert_to_monotonic(sentence_or_word, one_syllable_rule=True):
+def convert_to_monotonic(sentence_or_word: str, one_syllable_rule=True) -> str:
     sentence_or_word = remove_non_accent_diacritics_without_dierisis(sentence_or_word)
     sentence_or_word = unicodedata.normalize("NFD", sentence_or_word)
     for polytonic_accent in [VARIA, PERISPOMENI]:
@@ -53,8 +56,7 @@ def convert_to_monotonic(sentence_or_word, one_syllable_rule=True):
     return ' '.join(removed_one_syllable_accent)
 
 
-
-def is_accented(syllable):
+def is_accented(syllable: str) -> bool:
     """
     :param syllable:
     :return: boolean, yes or no
@@ -66,7 +68,7 @@ def is_accented(syllable):
     return False
 
 
-def put_accent_on_a_vowel(vowel):
+def put_accent_on_a_vowel(vowel: str) -> str:
     """
     :param vowel:
     :return: acute, if vowel with is accompanied by diaeresis, then diaeresis is left, all other accents are replaced by
@@ -79,7 +81,7 @@ def put_accent_on_a_vowel(vowel):
     return unicodedata.normalize("NFC", "".join((vowel, OXIA)))
 
 
-def put_accent_on_syllable(syllable):
+def put_accent_on_syllable(syllable: str) -> str:
     """
     :param syllable:
     :return: accented syllable
@@ -116,36 +118,34 @@ def put_accent_on_syllable(syllable):
     return accented_syllable
 
 
-def where_is_accent(word, true_syllabification=True):
+def where_is_accent(word: str, true_syllabification=True) -> str | None:
     """
     :param word:
     :param true_syllabification: that is where i before a vowel doesnt constitute a single syllable
     :return: ANTEPENULTIMATE, PENULTIMATE, ULTIMATE, 'incorrect_accent', and if there is no accent, None
     """
-    which = None
 
     syllables = modern_greek_syllabify(word, true_syllabification=true_syllabification)
-
+    accent = 100
     syllables = reversed(syllables)
     for (index, syllable) in enumerate(syllables):
         if is_accented(syllable):
-            which = index
+            accent = index
             break
-    if which == 0:
-        return ULTIMATE
-    elif which == 1:
-        return PENULTIMATE
-    elif which == 2:
-        return ANTEPENULTIMATE
-    elif not which:
+    if accent == 100:
         return None
+    elif accent == 0:
+        return ULTIMATE
+    elif accent == 1:
+        return PENULTIMATE
+    elif accent == 2:
+        return ANTEPENULTIMATE
     else:
-        return 'incorrect_accent'
+        return INCORRECT_ACCENT
 
 
-def put_accent(word, accent_name, true_syllabification=True):
+def put_accent(word: str, accent_name: str, true_syllabification=True) -> str:
     """
-
     :param word: can be already accented
     :param accent_name:ANTEPENULTIMATE, PENULTIMATE, ULTIMATE
     :param true_syllabification:
@@ -161,11 +161,10 @@ def put_accent(word, accent_name, true_syllabification=True):
 
     # check if there is a superflouus diaeresis in cases where ϊ (with diaeresis) is not an independent vowel ('ϊου' in eg 'ρολοϊου'),
     # and as a result we have syllabification of this kind: 'ρο-λο-ϊου'
-
     return word
 
 
-def remove_redundand_diaeresis(word):
+def remove_redundand_diaeresis(word: str) -> str:
     redundant_diaereseis = {'όϊ': 'όι', 'άϊ': "άι", 'έϊ': "έι", 'ύϊ': 'ύι', 'όϋ': 'όυ'}
     if DIAERESIS in unicodedata.normalize('NFD', word):
         for redundant_diaeresis in redundant_diaereseis:
@@ -175,7 +174,7 @@ def remove_redundand_diaeresis(word):
     return word
 
 
-def put_accent_on_the_ultimate(word, accent_one_syllable=True, second_accent=False):
+def put_accent_on_the_ultimate(word: str, accent_one_syllable=True, second_accent=False) -> str | None:
     # flag indicates if one syllable words should be accented
 
     if second_accent:
@@ -207,7 +206,7 @@ def put_accent_on_the_ultimate(word, accent_one_syllable=True, second_accent=Fal
         return None
 
 
-def put_accent_on_the_penultimate(word, true_syllabification=True):
+def put_accent_on_the_penultimate(word: str, true_syllabification=True) -> str:
     # if one syllable, do not put any accent
     word = remove_all_diacritics(word)
     syllables = modern_greek_syllabify(word, true_syllabification=true_syllabification)
@@ -226,7 +225,7 @@ def put_accent_on_the_penultimate(word, true_syllabification=True):
         return word
 
 
-def put_accent_on_the_antepenultimate(word, true_syllabification=True):
+def put_accent_on_the_antepenultimate(word: str, true_syllabification=True) -> str:
     # if one syllable word given, doesnt put accent
 
     word = remove_all_diacritics(word)

@@ -9,6 +9,7 @@ DIAERESIS = "\u0308"
 ANTEPENULTIMATE = 'antepenultimate'
 PENULTIMATE = 'penultimate'
 ULTIMATE = 'ultimate'
+INCORRECT_ACCENT = 'incorrect_accent'
 
 vowels_dict = {'ά': 'α', 'έ': 'ε', 'ί': 'ι', 'ύ': 'υ', 'ό': 'ο', 'ώ': 'ω', 'ή': 'η', 'ΐ': 'ϊ', 'ΰ': 'ϋ'}
 
