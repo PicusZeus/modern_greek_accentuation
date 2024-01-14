@@ -86,7 +86,13 @@ def add_augment(not_augmented_form: str) -> List[str]:
                 sub_res.append(verb)
                 if verb[0] not in vowels:
                     # reduplication
-                    form = verb[0] + 'ε' + verb
+                    # form = verb[0] + 'ε' + verb
+                    if verb[0] == 'θ':
+                        form = 'τε' + verb
+                    elif verb[0] == 'χ':
+                        form = 'κε' + verb
+                    else:
+                        form = verb[0] + 'ε' + verb
                     sub_res.append(form)
                     # augmentation
                     if verb[1] not in vowels or verb[0] in ['ξ', 'ψ']:

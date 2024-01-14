@@ -1,6 +1,8 @@
 from unittest import TestCase
 from modern_greek_accentuation import augmentify
 
+from icecream import ic
+
 
 class Augmentation(TestCase):
 
@@ -47,7 +49,14 @@ class Augmentation(TestCase):
     def test_metaggizw(self):
         self.assertEqual(
             set(augmentify.add_augment('μετάγγισα')),
-            {'μετάγγισα', 'μεταγγίσα', 'μεταέγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα', 'μετγγίσα'}
+            {'μετάγγισα', 'μεταγγίσα', 'μεταέγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα', 'μετγγίσα'},
+        )
+
+    def test_thwrakismenos(self):
+        self.assertEqual(
+            set(augmentify.add_augment('θωρακισμένος')),
+            {'τεθωρακισμένος', 'θωρακισμένος'}
+
         )
 
 class PutAccentAndAugmentify(TestCase):
