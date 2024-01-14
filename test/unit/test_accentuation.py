@@ -3,6 +3,9 @@ from modern_greek_accentuation import accentuation
 from modern_greek_accentuation.resources import ANTEPENULTIMATE, PENULTIMATE, ULTIMATE
 
 
+# from icecream import ic
+
+
 class RemoveAccent(TestCase):
     def test_remove_acute(self):
         r = accentuation.remove_all_diacritics('άνθρωπος')
@@ -40,7 +43,6 @@ class CheckAccentuation(TestCase):
         self.assertEqual(ANTEPENULTIMATE, r)
         self.assertEqual(ANTEPENULTIMATE, r1)
 
-
     def test_where_is_accent_penultimate(self):
         r = accentuation.where_is_accent('γυναίκα')
         self.assertEqual(PENULTIMATE, r)
@@ -72,9 +74,13 @@ class PutAccent(TestCase):
         self.assertEqual("Βαΐου", r3)
         self.assertEqual("διαβατηρίου", r4)
 
-    def put_accent_ultimate(self):
+    def test_put_accent_ultimate(self):
         r = accentuation.put_accent("παιδι", ULTIMATE)
         self.assertEqual("παιδί", r)
+
+    def test_put_accent_ultimate_sinizisi(self):
+        r = accentuation.put_accent('μακριοι', ULTIMATE)
+        self.assertEqual("μακριοί", r)
 
     def test_convert_to_monotonic(self):
         r = accentuation.convert_to_monotonic("ἐν τῷ πρόσθεν λόγῳ δεδήλωται.")
@@ -83,4 +89,3 @@ class PutAccent(TestCase):
     def test_convert_to_monotonic(self):
         r = accentuation.convert_to_monotonic('δηώ', one_syllable_rule=False)
         self.assertEqual('δηώ', r)
-

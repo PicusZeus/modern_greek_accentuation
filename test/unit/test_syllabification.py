@@ -1,6 +1,7 @@
 from unittest import TestCase
 from modern_greek_accentuation import syllabify
-from icecream import ic
+# from icecream import ic
+
 
 class Syllabification(TestCase):
 

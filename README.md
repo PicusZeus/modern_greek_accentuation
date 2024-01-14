@@ -1,5 +1,8 @@
 ![Tests](https://github.com/PicusZeus/modern_greek_accentuation/actions/workflows/tests.yml/badge.svg)
+![Downloads](https://img.shields.io/pypi/dm/modern-greek-accentuation)
+![python version](https://img.shields.io/pypi/pyversions/modern-greek-accentuation)
 
+[//]: # (![GitHub License]&#40;https://img.shields.io/github/license/picuszeus/modern-greek-accentuation&#41;)
 
 # Modern-greek-accentuation
 
@@ -24,6 +27,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.595 Fixed bug when accentuation on the ultimate, when there is possible sinizisi, was incorrect.
  * 0.594 Minor fixes, added support for reduplication for stems starting with θ, χ, fixed syllabification when word starting from a big letter.
  * 0.593 Fixed handling of augment in past perf participles, it's possible not only before clusters, but also before double consonants ψ ξ.
  * 0.592 Fixed handling of vowels before prefix

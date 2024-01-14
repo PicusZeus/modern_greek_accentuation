@@ -152,7 +152,7 @@ def put_accent(word: str, accent_name: str, true_syllabification=True) -> str:
     :return: if accent_name param given incorrect, return input word
     """
     if accent_name == ULTIMATE:
-        word = put_accent_on_the_ultimate(word)
+        word = put_accent_on_the_ultimate(word, true_syllabification=true_syllabification)
     elif accent_name == PENULTIMATE:
 
         word = put_accent_on_the_penultimate(word, true_syllabification=true_syllabification)
@@ -174,7 +174,7 @@ def remove_redundand_diaeresis(word: str) -> str:
     return word
 
 
-def put_accent_on_the_ultimate(word: str, accent_one_syllable=True, second_accent=False) -> str | None:
+def put_accent_on_the_ultimate(word: str, accent_one_syllable=True, second_accent=False, true_syllabification=True) -> str | None:
     # flag indicates if one syllable words should be accented
 
     if second_accent:
@@ -188,7 +188,7 @@ def put_accent_on_the_ultimate(word: str, accent_one_syllable=True, second_accen
     else:
         word = remove_all_diacritics(word)
 
-    syllables = modern_greek_syllabify(word)
+    syllables = modern_greek_syllabify(word, true_syllabification=true_syllabification)
 
     if not accent_one_syllable and len(syllables) < 2:
 
