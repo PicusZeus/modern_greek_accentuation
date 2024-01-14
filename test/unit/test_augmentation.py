@@ -1,7 +1,7 @@
 from unittest import TestCase
 from modern_greek_accentuation import augmentify
 
-from icecream import ic
+# from icecream import ic
 
 
 class Augmentation(TestCase):
