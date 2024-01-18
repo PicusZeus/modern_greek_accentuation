@@ -27,6 +27,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.599 Fixed yet again bug with accentuation on ultimate when ending in οιοι
  * 0.595 Fixed bug when accentuation on the ultimate, when there is possible sinizisi, was incorrect.
  * 0.594 Minor fixes, added support for reduplication for stems starting with θ, χ, fixed syllabification when word starting from a big letter.
  * 0.593 Fixed handling of augment in past perf participles, it's possible not only before clusters, but also before double consonants ψ ξ.

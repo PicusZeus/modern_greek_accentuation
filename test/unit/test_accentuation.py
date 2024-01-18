@@ -82,6 +82,10 @@ class PutAccent(TestCase):
         r = accentuation.put_accent('μακριοι', ULTIMATE)
         self.assertEqual("μακριοί", r)
 
+    def test_put_accent_ultimate_oioi(self):
+        r = accentuation.put_accent('ειδοποιοι', ULTIMATE)
+        self.assertEqual('ειδοποιοί', r)
+
     def test_convert_to_monotonic(self):
         r = accentuation.convert_to_monotonic("ἐν τῷ πρόσθεν λόγῳ δεδήλωται.")
         self.assertEqual('εν τω πρόσθεν λόγω δεδήλωται.', r)
