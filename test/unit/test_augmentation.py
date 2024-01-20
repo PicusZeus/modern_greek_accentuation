@@ -40,6 +40,12 @@ class Augmentation(TestCase):
             {'ήιρα', 'ήρα'}
         )
 
+    def test_drw(self):
+        self.assertEqual(
+            set(augmentify.add_augment('δρασμένος')),
+            {'δρασμένος', 'δεδρασμένος'}
+        )
+
     def test_parmenos(self):
         self.assertEqual(
             set(augmentify.add_augment('παρμένος')),

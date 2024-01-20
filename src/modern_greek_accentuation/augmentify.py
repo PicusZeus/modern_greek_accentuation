@@ -95,9 +95,10 @@ def add_augment(not_augmented_form: str) -> List[str]:
                         form = verb[0] + 'ε' + verb
                     sub_res.append(form)
                     # augmentation
-                    if verb[1] not in vowels or verb[0] in ['ξ', 'ψ']:
+                    if (verb[1] not in vowels and verb[1] not in ['ρ']) or verb[0] in ['ξ', 'ψ']:
                         form = 'ε' + verb
                         sub_res.append(form)
+
 
             sub_res_1 = [prefixes_before_augment[pref] + augmented for augmented in sub_res]
             sub_res_2 = [pref + augmented for augmented in sub_res]
