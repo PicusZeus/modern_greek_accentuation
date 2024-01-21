@@ -25,7 +25,10 @@ def add_augment(not_augmented_form: str) -> List[str]:
             sub_res = [put_accent_on_the_antepenultimate(verb)]
 
             if count_syllables(verb) in [2, 3] and verb[0] in ['α', 'ε', 'ο', 'ά', 'έ', 'ό']:
-                if verb[0] in ['ε', 'α', 'έ', 'ά'] and verb not in ['εγμένος']:
+                if verb.startswith('ευ') or verb.startswith('εύ'):
+                    sub_res.append('ηυ' + verb[2:])
+
+                elif verb[0] in ['ε', 'α', 'έ', 'ά'] and verb not in ['εγμένος']:
                     form = put_accent_on_the_antepenultimate('η' + verb[1:])
                     sub_res.append(form)
                     if verb[0] in ['ε', 'έ']:

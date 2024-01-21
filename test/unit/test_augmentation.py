@@ -46,6 +46,19 @@ class Augmentation(TestCase):
             {'δρασμένος', 'δεδρασμένος'}
         )
 
+    def test_synap(self):
+        self.assertEqual(
+            set(augmentify.add_augment('συναπόθανα')),
+            {'συνεναπόθανα', 'εσυναπόθανα', 'συναπόθανα', 'συναπέθανα', 'συεναπόθανα', 'συναποθάνα', 'συνεαπόθανα',
+             'συναποέθανα', 'συναπθάνα', 'συνναπόθανα'},
+        )
+
+    def test_eyriskw(self):
+        self.assertEqual(
+            set(augmentify.add_augment('εύρα')),
+            {'ηυρα'}
+        )
+
     def test_parmenos(self):
         self.assertEqual(
             set(augmentify.add_augment('παρμένος')),

@@ -27,6 +27,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.6.2 More prefixes added.
  * 0.6.1 Fixed bug that would allow for augmentation of participle stems beginning on consonant cluster with ro
  * 0.599 Fixed yet again bug with accentuation on ultimate when ending in οιοι
  * 0.595 Fixed bug when accentuation on the ultimate, when there is possible sinizisi, was incorrect.
