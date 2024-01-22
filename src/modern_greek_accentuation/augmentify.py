@@ -180,12 +180,12 @@ def put_accent_on_past_tense(past_form: str, present_form: str) -> str:
     prefix = ''
     # if there is a prefix that doesn't influence the verb form, cut it and attach at the end, so that
     # augments can be correctly handled
-    for pref in prefixes_list_that_allow_augmentaion:
+
+    for pref in prefixes_detachable:
 
         if pref == past_form[:len(pref)]:
             prefix = pref
-            present_form = present_form[len(pref):]
-            result = past_form[len(pref):]
+            break
 
     result = remove_all_diacritics(result)
 
@@ -196,30 +196,14 @@ def put_accent_on_past_tense(past_form: str, present_form: str) -> str:
         # if there is unaccented augment, strip it
         # but be careful with e or h that are parts of the stem in the present
         if result[0] == 'ε' and present_form[0] != 'ε':
-            result = result[1:]
+            result = prefix + result[1:]
 
-        if result[0] == 'η' and present_form[0] == 'ε':
-            result = 'ε' + result[1:]
+        elif result[0] == 'η' and present_form[0] == 'ε':
+            result = prefix + 'ε' + result[1:]
 
-        syllables = modern_greek_syllabify(result)
-
-    if len(syllables) >= 3:
-        to_be_accented = syllables[-3]
-        accented = put_accent_on_syllable(to_be_accented)
-        if not accented:
-            return "it's not a valid form"
-        syllables[-3] = accented
     else:
-        try:
-            to_be_accented = syllables[-2]
-            accented = put_accent_on_syllable(to_be_accented)
-        except:
-            return "it's not a valid verb form"
+        result = prefix + result
 
-        syllables[-2] = accented
-
-    result = ''.join(syllables)
-
-    return prefix + result
+    return put_accent_on_the_antepenultimate(result, true_syllabification=False)
 
 
