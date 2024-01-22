@@ -27,6 +27,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 0.6.3 More prefixes, new lists of prefixes (detachable weak and normal), differentiated according to the way how small (2 syllable) and longer verbs deal with them.
  * 0.6.2 More prefixes added.
  * 0.6.1 Fixed bug that would allow for augmentation of participle stems beginning on consonant cluster with ro
  * 0.599 Fixed yet again bug with accentuation on ultimate when ending in οιοι
