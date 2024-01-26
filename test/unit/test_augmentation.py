@@ -10,6 +10,7 @@ class Augmentation(TestCase):
         al = list(augmentify.add_augment('θέλα'))
         self.assertIn('ήθελα', al)
 
+
     def test_upofera(self):
         al = list(augmentify.add_augment('υποφερα'))
         self.assertIn('υπέφερα', al)
@@ -100,6 +101,17 @@ class Augmentation(TestCase):
             {'τεθωρακισμένος', 'θωρακισμένος'}
 
         )
+
+
+class DeAugment(TestCase):
+
+    def test_deaugment_epembh(self):
+        r = augmentify.deaugment_prefixed_stem('επενέβη'),
+        self.assertEqual(('επεμβη',), r)
+
+    def test_deaugment_past_form(self):
+        r = augmentify.deaugment_past_form('έκανες', 'κάνω'),
+        self.assertEqual(('κανες',), r)
 
 class PutAccentAndAugmentify(TestCase):
 

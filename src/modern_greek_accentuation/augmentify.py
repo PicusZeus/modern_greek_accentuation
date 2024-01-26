@@ -137,11 +137,12 @@ def deaugment_prefixed_stem(stem: str) -> str:
     :return: check if the stem is augmented and if it is, returns an anaugmented stem
     """
 
-    for pref in dict_of_augmented_prefixes.items():
+    for pref in sorted(dict_of_augmented_prefixes.items(), key=lambda key: len(key[1]), reverse=True):
+        if pref[1] == remove_all_diacritics(stem[:len(pref[1])]):
 
-        if len(stem) > len(pref[1]) and pref[1] == remove_all_diacritics(stem[:len(pref[1])]):
             prefix = pref[0].strip()
             verb = stem[len(pref[1]):]
+
             if prefix[-1] == 'ν':
                 if verb[0] in ['γ', 'χ', 'κ', 'ξ']:
                     prefix = prefix[:-1] + 'γ'
@@ -173,6 +174,23 @@ def deaugment_stem(stem: str, lemma: str) -> str | None:
                 deagmented_stem = stem
             return deagmented_stem
     return None
+
+
+def deaugment_past_form(form: str, lemma: str) -> str:
+    """
+    :param form: verb
+    :param lemma: lemma is needed to check if an anaugmented stem begins on e or a
+    :return: deaugmented_stem if successful, else None, it must be checked against a data base of all forms
+    """
+
+    if form[0] in ['έ', 'ή']:
+        deagmented_stem = form[1:]
+        if lemma[0] in ['ε', 'α', 'ά', 'έ'] and form[0] in ['ή']:
+            deagmented_stem = lemma[0] + deagmented_stem
+        elif lemma[0] == 'ε':
+            deagmented_stem = form
+        return deagmented_stem
+    return form
 
 
 def put_accent_on_past_tense(past_form: str, present_form: str) -> str:
@@ -216,5 +234,3 @@ def put_accent_on_past_tense(past_form: str, present_form: str) -> str:
         result = prefix + result
 
     return put_accent_on_the_antepenultimate(result, true_syllabification=False)
-
-
