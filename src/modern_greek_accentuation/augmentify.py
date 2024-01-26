@@ -1,6 +1,7 @@
 from __future__ import annotations
 from modern_greek_accentuation.accentuation import *
 from modern_greek_accentuation.resources import *
+from modern_greek_accentuation.syllabify import modern_greek_syllabify
 from typing import List
 
 
@@ -12,9 +13,18 @@ def add_augment(not_augmented_form: str) -> List[str]:
      The result must be checked against a data base of existing
      words. accent on antepenultimate
     """
+    try:
+        second_syllable = modern_greek_syllabify(not_augmented_form)[-2]
+        sinizisi = count_syllables(second_syllable) != count_syllables(second_syllable, true_syllabification=False)
+    except IndexError:
+        sinizisi = False
+    results = [put_accent_on_the_antepenultimate(
+        not_augmented_form, False)]
+    if not sinizisi:
+        results.append(not_augmented_form)
+    if not sinizisi or count_syllables(not_augmented_form) > 2:
+        results.append(put_accent_on_the_antepenultimate(not_augmented_form))
 
-    results = [put_accent_on_the_antepenultimate(not_augmented_form), put_accent_on_the_antepenultimate(
-        not_augmented_form, False), not_augmented_form]
     for pref in prefixes_before_augment.keys():
         pref = pref.strip()
         verb = not_augmented_form[len(pref):]
@@ -22,16 +32,16 @@ def add_augment(not_augmented_form: str) -> List[str]:
         if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]) \
                 and remove_all_diacritics(verb) != 'μενος':
 
-            sub_res = [put_accent_on_the_antepenultimate(verb)]
+            sub_res = []
 
-            if count_syllables(verb) in [2, 3] and verb[0] in ['α', 'ε', 'ο', 'ά', 'έ', 'ό']:
+            if count_syllables(verb) in [2, 3] and verb[0] in ['ι', 'α', 'ε', 'ο', 'ά', 'έ', 'ό']:
                 if verb.startswith('ευ') or verb.startswith('εύ'):
                     sub_res.append('ηυ' + verb[2:])
 
                 elif verb[0] in ['ε', 'α', 'έ', 'ά'] and verb not in ['εγμένος']:
                     form = put_accent_on_the_antepenultimate('η' + verb[1:])
                     sub_res.append(form)
-                    if verb[0] in ['ε', 'έ']:
+                    if verb[0] in ['ε', 'έ', 'ι']:
                         form = put_accent_on_the_antepenultimate('ει' + verb[1:])
                         sub_res.append(form)
                     if verb[:2] in ['αι', 'αί', 'ει', 'εί']:
@@ -102,7 +112,6 @@ def add_augment(not_augmented_form: str) -> List[str]:
                         form = 'ε' + verb
                         sub_res.append(form)
 
-
             sub_res_1 = [prefixes_before_augment[pref] + augmented for augmented in sub_res]
             sub_res_2 = [pref + augmented for augmented in sub_res]
 
@@ -110,10 +119,12 @@ def add_augment(not_augmented_form: str) -> List[str]:
 
             # filter_out irregularities
             results = list(set(results))
-            results = [f for f in results if count_syllables(f) > 2 or f[:-1] in ['πήγ', 'πήρ', 'είχ', 'ήρθ',
-                                                                                  'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
-                                                                                  'βήκ', 'είπ', 'είδ', 'ήπι', 'ήρ',
-                                                                                  'ήχθ', 'ήγ']]
+            results = [f for f in results if
+                       count_syllables(f, true_syllabification=False) > 2 or f[:-1] in ['πήγ', 'πήρ', 'είχ', 'ήρθ',
+                                                                                        'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
+                                                                                        'βήκ', 'είπ', 'είδ', 'ήπι',
+                                                                                        'ήρ',
+                                                                                        'ήχθ', 'ήγ']]
     if not_augmented_form[-2:] == 'ος':
         results = [put_accent_on_the_penultimate(v) for v in results]
 

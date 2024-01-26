@@ -46,11 +46,34 @@ class Augmentation(TestCase):
             {'δρασμένος', 'δεδρασμένος'}
         )
 
+    def test_krimenos(self):
+        self.assertEqual(
+            set(augmentify.add_augment('κριμένος')),
+            {'κριμένος', 'κεκριμένος'}
+        )
+    def test_υπάρχω(self):
+        self.assertEqual(
+            set(augmentify.add_augment('υπαρχα')),
+            {'ύπαρχα', 'υπήρχα', 'εύπαρχα', 'υπαρχα'}
+        )
+
+    def test_διέπω(self):
+        self.assertEqual(
+            set(augmentify.add_augment('διεπα')),
+            {'δίεπα', 'διείπα', 'έδιεπα', 'διήπα'}
+        )
+
+    def test_pianw(self):
+        self.assertEqual(
+            set(augmentify.add_augment('πιανα')),
+            {'έπιανα', 'πίανα'}
+        )
+
     def test_synap(self):
         self.assertEqual(
             set(augmentify.add_augment('συναπόθανα')),
-            {'συνεναπόθανα', 'εσυναπόθανα', 'συναπόθανα', 'συναπέθανα', 'συεναπόθανα', 'συναποθάνα', 'συνεαπόθανα',
-             'συναποέθανα', 'συναπθάνα', 'συνναπόθανα'},
+            {'συνεναπόθανα', 'εσυναπόθανα', 'συναπόθανα', 'συναπέθανα', 'συεναπόθανα', 'συνεαπόθανα',
+             'συναποέθανα'},
         )
 
     def test_eyriskw(self):
@@ -68,7 +91,7 @@ class Augmentation(TestCase):
     def test_metaggizw(self):
         self.assertEqual(
             set(augmentify.add_augment('μετάγγισα')),
-            {'μετάγγισα', 'μεταγγίσα', 'μεταέγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα', 'μετγγίσα'},
+            {'μετάγγισα', 'μεταέγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα'},
         )
 
     def test_thwrakismenos(self):
