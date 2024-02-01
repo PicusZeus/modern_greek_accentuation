@@ -109,6 +109,22 @@ class DeAugment(TestCase):
         r = augmentify.deaugment_prefixed_stem('επενέβη'),
         self.assertEqual(('επεμβη',), r)
 
+    def test_deaugment_parhggeil(self):
+        r = augmentify.deaugment_prefixed_stem('παρήγγειλα'),
+        self.assertEqual(('παραγγειλα',), r)
+
+    def test_deaugment_parebh(self):
+        r = augmentify.deaugment_prefixed_stem('παρέβη'),
+        self.assertEqual(('παραβη',), r)
+
+    def test_deaugment_enekrina(self):
+        r = augmentify.deaugment_prefixed_stem('ενέκρινα'),
+        self.assertEqual(('εγκρινα', ), r)
+
+    def test_deaugment_enekrina(self):
+        r = augmentify.deaugment_prefixed_stem('εξέβαλα'),
+        self.assertEqual(('εκβαλα', ), r)
+
     def test_deaugment_past_form(self):
         r = augmentify.deaugment_past_form('έκανες', 'κάνω'),
         self.assertEqual(('κανες',), r)

@@ -27,6 +27,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 1.0.1 Fixed issue with syllabification when consonant clusters are allowed, minor fixes in augmentation where there was problem with distinguishing pair 'παρα παρη' and 'παρα παρ' 
  * 0.6.5 Added deaugment_past_form function
  * 0.6.4 Improved augmentation module, now it reproduces less and more accurate results.
  * 0.6.3 More prefixes, new lists of prefixes (detachable weak and normal), differentiated according to the way how small (2 syllable) and longer verbs deal with them.

@@ -9,10 +9,11 @@ TO DO: add transcription to greeklish
 """
 
 
-def simple_transcription(word: str, h=None, modern=False) -> str:
+def simple_transcription(word: str, h=None, modern: bool = False) -> str:
     """
     This is the simplest possible transcription mostly based on Erasmian pronunciation. Such a transcription
     can be used for identifying words written with orthographic errors or written with latin chars.
+    :param modern:
     :param word: word written with Greek chars.
     :param h: you can define how to render 'η', default is 'h'.
     :param modern_tr: modern transcription method if True

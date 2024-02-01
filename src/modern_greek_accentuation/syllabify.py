@@ -24,6 +24,8 @@ def _cut_off_syllable(word: str, true_syllabification=False) -> tuple:
                 # problem with diph αη in κάηκα
                 if all_letters[border + 1] + letter in diphtongs and true_syllabification:
                     border += 1
+                # elif all_letters[border + 1] + letter in allowed_clusters:
+                #     border += 1
                 elif all_letters[border + 1] + letter in [d for d in diphtongs if d not in ['αη', 'οη', 'άη', 'όη',
                                                                                             'άι', 'αϊ', 'όι', 'οϊ'
                                                                                             ]] and not \
@@ -58,7 +60,7 @@ def _cut_off_syllable(word: str, true_syllabification=False) -> tuple:
                             # if the consonant cluster can be a start for a greek word
 
                             if len(cons) > 1 and cons[:2] in valid_cons_cluster:
-                                difference = len(cons) - 2
+                                difference = 0
                                 border -= difference
 
                             elif len(cons) > 1:
@@ -82,7 +84,7 @@ def _cut_off_syllable(word: str, true_syllabification=False) -> tuple:
     return word, None
 
 
-def _divide_into_syllables(word: str, syllables=[], true_syllabification=False) -> tuple:
+def _divide_into_syllables(word: str, syllables: list = None, true_syllabification=False) -> tuple:
     # helping function, returns word chopped into syllables in reverse order,
     # if true_syllabification off, it takes into consideration unaccented 'i'.
 
@@ -103,7 +105,7 @@ def _divide_into_syllables(word: str, syllables=[], true_syllabification=False) 
     return rest, syllables
 
 
-def modern_greek_syllabify(word: str, true_syllabification=True) -> List[str]:
+def modern_greek_syllabify(word: str, true_syllabification: bool = True) -> List[str]:
     """
     There is a problem as to how treat 'i' before vowels, as it is inconsistent across Modern Greek
     (χρη-σι-μο-ποι-ώ, υ-γι-ής, κα-τα-πιώ, και-νού-ργιο, Γιε-ώ-ργι-ος κτλ.), which mainly comes from the injection of
@@ -134,7 +136,7 @@ def is_vowel(letter: str) -> bool:
     return False
 
 
-def count_syllables(word: str, true_syllabification=True) -> int:
+def count_syllables(word: str, true_syllabification: bool = True) -> int:
     # modern greek only
 
     syllables = modern_greek_syllabify(word, true_syllabification=true_syllabification)

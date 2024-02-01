@@ -1,11 +1,13 @@
 from __future__ import annotations
+
+from _ctypes_test import func
+
 from modern_greek_accentuation.syllabify import *
 
 import unicodedata
-from typing import List, Union
 
 
-def remove_diacritics(*diacritics, diaeresis=True):
+def remove_diacritics(*diacritics: list[str], diaeresis: bool = True) -> func:
     """
     :param diacritics: even though it's Modern Greek there can be still instances of polytonic texts
     :param diaeresis:   if dieresis is true, it checks if dieresis is expected because of accent position and puts it.
@@ -33,7 +35,7 @@ remove_non_accent_diacritics_without_dierisis = remove_diacritics(YPOGEGRAMMENI,
 remove_diaer = remove_diacritics(DIAERESIS)
 
 
-def convert_to_monotonic(sentence_or_word: str, one_syllable_rule=True) -> str:
+def convert_to_monotonic(sentence_or_word: str, one_syllable_rule: bool = True) -> str:
     sentence_or_word = remove_non_accent_diacritics_without_dierisis(sentence_or_word)
     sentence_or_word = unicodedata.normalize("NFD", sentence_or_word)
     for polytonic_accent in [VARIA, PERISPOMENI]:
