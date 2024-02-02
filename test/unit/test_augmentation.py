@@ -1,5 +1,7 @@
 from unittest import TestCase
 from modern_greek_accentuation import augmentify
+
+
 # from icecream import ic
 
 
@@ -8,7 +10,6 @@ class Augmentation(TestCase):
     def test_hthela(self):
         al = list(augmentify.add_augment('θέλα'))
         self.assertIn('ήθελα', al)
-
 
     def test_upofera(self):
         al = list(augmentify.add_augment('υποφερα'))
@@ -51,6 +52,7 @@ class Augmentation(TestCase):
             set(augmentify.add_augment('κριμένος')),
             {'κριμένος', 'κεκριμένος'}
         )
+
     def test_υπάρχω(self):
         self.assertEqual(
             set(augmentify.add_augment('υπαρχα')),
@@ -67,6 +69,20 @@ class Augmentation(TestCase):
         self.assertEqual(
             set(augmentify.add_augment('πιανα')),
             {'έπιανα', 'πίανα'}
+        )
+
+    def test_paralaba(self):
+        self.assertEqual(
+            set(augmentify.add_augment('παράλαβα')),
+            {'παράλαβα', 'παραέλαβα', 'παρέλαβα','παρήλαβα','επαράλαβα'}
+        )
+
+    def test_paresth(self):
+        self.assertEqual(
+            set(augmentify.add_augment('παράστη')),
+            {'πάραστη', 'παραέστη', 'παρήστη', 'παράστη', 'παρέστη', 'επαράστη'}
+,
+            # print(set(augmentify.add_augment('παράβαλα')))
         )
 
     def test_synap(self):
@@ -124,19 +140,20 @@ class DeAugment(TestCase):
 
     def test_deaugment_parebh(self):
         r = augmentify.deaugment_prefixed_stem('παρέβη'),
-        self.assertEqual(('παραβη',), r,)
+        self.assertEqual(('παραβη',), r, )
 
     def test_deaugment_enekrina(self):
         r = augmentify.deaugment_prefixed_stem('ενέκρινα'),
-        self.assertEqual(('εγκρινα', ), r)
+        self.assertEqual(('εγκρινα',), r)
 
     def test_deaugment_enekrina(self):
         r = augmentify.deaugment_prefixed_stem('εξέβαλα'),
-        self.assertEqual(('εκβαλα', ), r)
+        self.assertEqual(('εκβαλα',), r)
 
     def test_deaugment_past_form(self):
         r = augmentify.deaugment_past_form('έκανες', 'κάνω'),
         self.assertEqual(('κανες',), r)
+
 
 class PutAccentAndAugmentify(TestCase):
 

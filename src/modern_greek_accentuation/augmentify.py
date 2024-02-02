@@ -40,7 +40,11 @@ def add_augment(not_augmented_form: str) -> List[str]:
 
                 elif verb[0] in ['ε', 'α', 'έ', 'ά'] and verb not in ['εγμένος']:
                     form = put_accent_on_the_antepenultimate('η' + verb[1:])
+
                     sub_res.append(form)
+                    if pref in ['παρ']:
+                        form_2 = put_accent_on_the_antepenultimate('ε' + verb[1:])
+                        sub_res.append(form_2)
                     if verb[0] in ['ε', 'έ', 'ι']:
                         form = put_accent_on_the_antepenultimate('ει' + verb[1:])
                         sub_res.append(form)
