@@ -1,6 +1,5 @@
 from unittest import TestCase
 from modern_greek_accentuation import augmentify
-
 # from icecream import ic
 
 
@@ -89,6 +88,12 @@ class Augmentation(TestCase):
             {'παρμένος', 'πεπαρμένος'}
         )
 
+    def test_biasmenos(self):
+        self.assertEqual(
+            set(augmentify.add_augment('βιασμένος')),
+            {'βιασμένος', 'βεβιασμένος'}
+        )
+
     def test_metaggizw(self):
         self.assertEqual(
             set(augmentify.add_augment('μετάγγισα')),
@@ -113,9 +118,13 @@ class DeAugment(TestCase):
         r = augmentify.deaugment_prefixed_stem('παρήγγειλα'),
         self.assertEqual(('παραγγειλα',), r)
 
+    def test_deaugment_parhgagan(self):
+        r = augmentify.deaugment_prefixed_stem('παρηγάγανε'),
+        self.assertEqual(('παραγάγανε',), r)
+
     def test_deaugment_parebh(self):
         r = augmentify.deaugment_prefixed_stem('παρέβη'),
-        self.assertEqual(('παραβη',), r)
+        self.assertEqual(('παραβη',), r,)
 
     def test_deaugment_enekrina(self):
         r = augmentify.deaugment_prefixed_stem('ενέκρινα'),

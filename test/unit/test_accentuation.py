@@ -11,6 +11,10 @@ class RemoveAccent(TestCase):
         r = accentuation.remove_all_diacritics('άνθρωπος')
         self.assertEqual('ανθρωπος', r)
 
+    def test_remove_accent(self):
+        r = accentuation.remove_all_diacritics('οφείλω')
+        self.assertEqual('οφειλω', r)
+
     def test_remove_without_diaeresis(self):
         r = accentuation.remove_all_diacritics('προϋπηρεσία')
         self.assertEqual('προϋπηρεσια', r)
