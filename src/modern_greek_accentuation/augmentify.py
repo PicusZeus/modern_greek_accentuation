@@ -42,9 +42,9 @@ def add_augment(not_augmented_form: str) -> List[str]:
                     form = put_accent_on_the_antepenultimate('η' + verb[1:])
 
                     sub_res.append(form)
-                    if pref in ['παρ']:
-                        form_2 = put_accent_on_the_antepenultimate('ε' + verb[1:])
-                        sub_res.append(form_2)
+                    # if pref in ['παρ']:
+                    #     form_2 = put_accent_on_the_antepenultimate('ε' + verb[1:])
+                    #     sub_res.append(form_2)
                     if verb[0] in ['ε', 'έ', 'ι']:
                         form = put_accent_on_the_antepenultimate('ει' + verb[1:])
                         sub_res.append(form)
@@ -117,7 +117,10 @@ def add_augment(not_augmented_form: str) -> List[str]:
                         sub_res.append(form)
 
             sub_res_1 = [prefixes_before_augment[pref] + augmented for augmented in sub_res]
-            sub_res_2 = [pref + augmented for augmented in sub_res]
+            if pref not in ['παρα']:
+                sub_res_2 = [pref + augmented for augmented in sub_res]
+            else:
+                sub_res_2 = []
 
             results.extend(sub_res_1 + sub_res_2)
 

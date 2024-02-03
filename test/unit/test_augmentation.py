@@ -74,13 +74,20 @@ class Augmentation(TestCase):
     def test_paralaba(self):
         self.assertEqual(
             set(augmentify.add_augment('παράλαβα')),
-            {'παράλαβα', 'παραέλαβα', 'παρέλαβα','παρήλαβα','επαράλαβα'}
+            {'παράλαβα', 'παρέλαβα','παρήλαβα','επαράλαβα'}
+        )
+
+    def test_parameina(self):
+        self.assertEqual(
+            set(augmentify.add_augment('παράμεινα')),
+            {'επαράμεινα', 'παρέμεινα', 'παράμεινα', 'παρήμεινα'},
+            # print(set(augmentify.add_augment('παράμεινα')))
         )
 
     def test_paresth(self):
         self.assertEqual(
             set(augmentify.add_augment('παράστη')),
-            {'πάραστη', 'παραέστη', 'παρήστη', 'παράστη', 'παρέστη', 'επαράστη'}
+            {'πάραστη', 'παρήστη', 'παράστη', 'παρέστη', 'επαράστη'}
 ,
             # print(set(augmentify.add_augment('παράβαλα')))
         )

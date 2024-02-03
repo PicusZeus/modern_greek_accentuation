@@ -27,6 +27,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 1.0.3 Prefix para detachable removed, as it caused too much problems with augmentation, instead issue with detachable para should be resolved in your code externally.
  * 1.0.2 Fixed bug which caused incorrect internal augmentation when prefix was παρα.
  * 1.0.1 Fixed issue with syllabification when consonant clusters are allowed, minor fixes in augmentation where there was problem with distinguishing pair 'παρα παρη' and 'παρα παρ' 
  * 0.6.5 Added deaugment_past_form function
