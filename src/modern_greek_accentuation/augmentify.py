@@ -25,9 +25,22 @@ def add_augment(not_augmented_form: str) -> List[str]:
     if not sinizisi or count_syllables(not_augmented_form) > 2:
         results.append(put_accent_on_the_antepenultimate(not_augmented_form))
 
-    for pref in prefixes_before_augment.keys():
+    results = add_augment_with_prefix(prefixes_before_augment, not_augmented_form, results)
+
+    results = add_augment_with_prefix(prefixes_before_augment_on_vowel, not_augmented_form, results, on_vowel=True)
+    if not_augmented_form[-2:] == 'ος':
+        results = [put_accent_on_the_penultimate(v) for v in results]
+
+    return results
+
+
+def add_augment_with_prefix(prefixes, not_augmented_form, results, on_vowel=False):
+
+    for pref in prefixes.keys():
         pref = pref.strip()
         verb = not_augmented_form[len(pref):]
+        if on_vowel and verb and not verb[0] in vowels:
+            continue
 
         if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]) \
                 and remove_all_diacritics(verb) != 'μενος':
@@ -52,7 +65,6 @@ def add_augment(not_augmented_form: str) -> List[str]:
                         form = put_accent_on_the_antepenultimate('η' + verb[2:])
 
                         sub_res.append(form)
-
 
                 elif verb[0] in ['ο' 'ό']:
                     form = put_accent_on_the_antepenultimate('ω' + verb[1:])
@@ -116,7 +128,7 @@ def add_augment(not_augmented_form: str) -> List[str]:
                         form = 'ε' + verb
                         sub_res.append(form)
 
-            sub_res_1 = [prefixes_before_augment[pref] + augmented for augmented in sub_res]
+            sub_res_1 = [prefixes[pref] + augmented for augmented in sub_res]
             if pref not in ['παρα']:
                 sub_res_2 = [pref + augmented for augmented in sub_res]
             else:
@@ -132,19 +144,13 @@ def add_augment(not_augmented_form: str) -> List[str]:
                                                                                         'βήκ', 'είπ', 'είδ', 'ήπι',
                                                                                         'ήρ',
                                                                                         'ήχθ', 'ήγ']]
-    if not_augmented_form[-2:] == 'ος':
-        results = [put_accent_on_the_penultimate(v) for v in results]
-
     return results
-
-
-
 
 
 def deaugment_prefixed_stem(stem: str) -> str:
     """
     :param stem: verb stem with cut off ending, prefixed
-    :return: check if the stem is augmented and if it is, returns an anaugmented stem
+    :return: check if the stem is augmented and if it is, returns an anaugmented stem without any accent
     """
 
     for pref in sorted(dict_of_augmented_prefixes.items(), key=lambda key: len(key[1]), reverse=True):
@@ -165,7 +171,7 @@ def deaugment_prefixed_stem(stem: str) -> str:
 
             return prefix + verb
 
-    return stem
+    return remove_all_diacritics(stem)
 
 
 def deaugment_stem(stem: str, lemma: str) -> str | None:

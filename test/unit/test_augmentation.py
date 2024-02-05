@@ -68,7 +68,7 @@ class Augmentation(TestCase):
     def test_dinw(self):
         self.assertEqual(
             set(augmentify.add_augment('δινα')),
-            {'δίεπα', 'διείπα', 'έδιεπα', 'διήπα'}
+            {'έδινα'}
         )
 
     def test_pianw(self):
@@ -87,7 +87,6 @@ class Augmentation(TestCase):
         self.assertEqual(
             set(augmentify.add_augment('παράμεινα')),
             {'επαράμεινα', 'παρέμεινα', 'παράμεινα', 'παρήμεινα'},
-            # print(set(augmentify.add_augment('παράμεινα')))
         )
 
     def test_paresth(self):
@@ -142,6 +141,14 @@ class DeAugment(TestCase):
     def test_deaugment_epembh(self):
         r = augmentify.deaugment_prefixed_stem('επενέβη'),
         self.assertEqual(('επεμβη',), r)
+
+    def test_deaugment_ketepsixa(self):
+        r = augmentify.deaugment_prefixed_stem('κατέψυχα'),
+        self.assertEqual(('καταψυχα',), r)
+
+    def test_deaugment_sokare(self):
+        r = augmentify.deaugment_prefixed_stem('σόκαρε'),
+        self.assertEqual(('σοκαρε',), r)
 
     def test_deaugment_parhggeil(self):
         r = augmentify.deaugment_prefixed_stem('παρήγγειλα'),
