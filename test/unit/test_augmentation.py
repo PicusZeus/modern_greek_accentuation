@@ -65,6 +65,12 @@ class Augmentation(TestCase):
             {'δίεπα', 'διείπα', 'έδιεπα', 'διήπα'}
         )
 
+    def test_dinw(self):
+        self.assertEqual(
+            set(augmentify.add_augment('δινα')),
+            {'δίεπα', 'διείπα', 'έδιεπα', 'διήπα'}
+        )
+
     def test_pianw(self):
         self.assertEqual(
             set(augmentify.add_augment('πιανα')),

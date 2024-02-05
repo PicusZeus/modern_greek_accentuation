@@ -70,6 +70,18 @@ def is_accented(syllable: str) -> bool:
     return False
 
 
+def has_multiple_accents(word: str) -> bool:
+    number_of_accents = 0
+    for syllable in modern_greek_syllabify(word):
+        if is_accented(syllable):
+            number_of_accents += 1
+
+        if number_of_accents > 1:
+            return True
+
+    return False
+
+
 def put_accent_on_a_vowel(vowel: str) -> str:
     """
     :param vowel:
