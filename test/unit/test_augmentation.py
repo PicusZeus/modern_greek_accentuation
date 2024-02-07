@@ -56,7 +56,7 @@ class Augmentation(TestCase):
     def test_υπάρχω(self):
         self.assertEqual(
             set(augmentify.add_augment('υπαρχα')),
-            {'ύπαρχα', 'υπήρχα', 'εύπαρχα', 'υπαρχα'}
+            {'ύπαρχα', 'υπήρχα', 'υπαρχα'}
         )
 
     def test_διέπω(self):
@@ -80,7 +80,7 @@ class Augmentation(TestCase):
     def test_paralaba(self):
         self.assertEqual(
             set(augmentify.add_augment('παράλαβα')),
-            {'παράλαβα', 'παρέλαβα','παρήλαβα','επαράλαβα'}
+            {'παράλαβα', 'παρέλαβα', 'παρήλαβα', 'επαράλαβα'}
         )
 
     def test_parameina(self):
@@ -89,19 +89,25 @@ class Augmentation(TestCase):
             {'επαράμεινα', 'παρέμεινα', 'παράμεινα', 'παρήμεινα'},
         )
 
+    def test_αυξημένος(self):
+        self.assertEqual(
+            set(augmentify.add_augment('αυξημένος')),
+            {'ηυξημένος', 'αυξημένος'}
+        )
+
     def test_paresth(self):
         self.assertEqual(
             set(augmentify.add_augment('παράστη')),
             {'πάραστη', 'παρήστη', 'παράστη', 'παρέστη', 'επαράστη'}
-,
+            ,
             # print(set(augmentify.add_augment('παράβαλα')))
         )
 
     def test_synap(self):
         self.assertEqual(
             set(augmentify.add_augment('συναπόθανα')),
-            {'συνεναπόθανα', 'εσυναπόθανα', 'συναπόθανα', 'συναπέθανα', 'συεναπόθανα', 'συνεαπόθανα',
-             'συναποέθανα'},
+            {'εσυναπόθανα', 'συναπόθανα', 'συναπέθανα', 'συνεναπόθανα',
+             'συνηπόθανα'},
         )
 
     def test_eyriskw(self):
@@ -125,16 +131,14 @@ class Augmentation(TestCase):
     def test_metaggizw(self):
         self.assertEqual(
             set(augmentify.add_augment('μετάγγισα')),
-            {'μετάγγισα', 'μεταέγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα'},
+            {'μετάγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα'},
         )
 
     def test_thwrakismenos(self):
         self.assertEqual(
             set(augmentify.add_augment('θωρακισμένος')),
             {'τεθωρακισμένος', 'θωρακισμένος'}
-
         )
-
 
 class DeAugment(TestCase):
 

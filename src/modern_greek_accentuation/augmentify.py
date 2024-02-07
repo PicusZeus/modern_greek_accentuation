@@ -34,46 +34,55 @@ def add_augment(not_augmented_form: str) -> List[str]:
     return results
 
 
-def add_augment_with_prefix(prefixes, not_augmented_form, results, on_vowel=False):
+def add_augment_with_prefix(prefixes: dict, not_augmented_form: str, results: list[str], on_vowel: bool = False):
+    """
 
+    :param prefixes:
+    :param not_augmented_form:
+    :param results:
+    :param on_vowel:
+    :return:
+    """
     for pref in prefixes.keys():
         pref = pref.strip()
         verb = not_augmented_form[len(pref):]
         if on_vowel and verb and not verb[0] in vowels:
             continue
+        sub_res = []
+        if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]):
+            if not verb.endswith('μένος'):
 
-        if len(verb) > 1 and pref == remove_all_diacritics(not_augmented_form[:len(pref)]) \
-                and remove_all_diacritics(verb) != 'μενος':
+                if verb[0] in ['ι', 'α', 'ε', 'ο', 'ά', 'έ', 'ό']:
+                    if verb[:2] in ['ευ', 'εύ', 'αυ', 'αύ']:
+                        sub_res.append('ηυ' + verb[2:])
 
-            sub_res = []
-
-            if count_syllables(verb) in [2, 3] and verb[0] in ['ι', 'α', 'ε', 'ο', 'ά', 'έ', 'ό']:
-                if verb.startswith('ευ') or verb.startswith('εύ'):
-                    sub_res.append('ηυ' + verb[2:])
-
-                elif verb[0] in ['ε', 'α', 'έ', 'ά'] and verb not in ['εγμένος']:
-                    form = put_accent_on_the_antepenultimate('η' + verb[1:])
-
-                    sub_res.append(form)
-                    # if pref in ['παρ']:
-                    #     form_2 = put_accent_on_the_antepenultimate('ε' + verb[1:])
-                    #     sub_res.append(form_2)
-                    if verb[0] in ['ε', 'έ', 'ι']:
-                        form = put_accent_on_the_antepenultimate('ει' + verb[1:])
-                        sub_res.append(form)
-                    if verb[:2] in ['αι', 'αί', 'ει', 'εί']:
-                        form = put_accent_on_the_antepenultimate('η' + verb[2:])
+                    elif verb[0] in ['ε', 'α', 'έ', 'ά'] and verb not in ['εγμένος']:
+                        form = put_accent_on_the_antepenultimate('η' + verb[1:])
 
                         sub_res.append(form)
 
-                elif verb[0] in ['ο' 'ό']:
-                    form = put_accent_on_the_antepenultimate('ω' + verb[1:])
-                    sub_res.append(form)
-            elif verb[-1] in ['α', 'ά', 'ε']:
-                form = put_accent_on_the_antepenultimate('ε' + verb)
-                if verb[:-1] in ['θέλ', 'ξέρ']:
+                        if verb[0] in ['ε', 'έ', 'ι']:
+                            form = put_accent_on_the_antepenultimate('ει' + verb[1:])
+                            sub_res.append(form)
+
+                        if verb[:2] in ['αι', 'αί', 'ει', 'εί']:
+                            form = put_accent_on_the_antepenultimate('η' + verb[2:])
+
+                            sub_res.append(form)
+                        elif verb[-1] in ['α', 'ά', 'ε', 'έ']:
+                            form = put_accent_on_the_antepenultimate('η' + verb[1:])
+                            sub_res.append(form)
+                    elif verb[0] in ['ο' 'ό']:
+                        form = put_accent_on_the_antepenultimate('ω' + verb[1:])
+                        sub_res.append(form)
+
+                elif verb.startswith('θέλ') or verb.startswith('ξέρ'):
                     form = put_accent_on_the_antepenultimate('η' + verb)
-                sub_res.append(form)
+                    sub_res.append(form)
+                elif count_syllables(verb) and verb[0] not in vowels:
+                    form = put_accent_on_the_antepenultimate('ε' + verb)
+                    sub_res.append(form)
+
 
             # archaic aorist
 
@@ -105,13 +114,13 @@ def add_augment_with_prefix(prefixes, not_augmented_form, results, on_vowel=Fals
                     sub_res = [put_accent_on_the_antepenultimate(f) for f in sub_res]
 
             # archaic paratatikos without accent change
-            elif verb[-2:] in ['το'] or verb[-3:] == 'μην':
-                form = 'ε' + verb
-                sub_res.append(form)
-                sub_res.append(verb)
+            # elif verb[-2:] in ['το'] or verb[-3:] == 'μην':
+            #     form = 'ε' + verb
+            #     sub_res.append(form)
+            #     sub_res.append(verb)
 
             # perfect participle
-            if verb[-2:] == 'ος':
+            elif verb.endswith('μένος'):
                 sub_res.append(verb)
                 if verb[0] not in vowels:
                     # reduplication
@@ -120,30 +129,34 @@ def add_augment_with_prefix(prefixes, not_augmented_form, results, on_vowel=Fals
                         form = 'τε' + verb
                     elif verb[0] == 'χ':
                         form = 'κε' + verb
+                    elif verb[0] == 'ρ':
+                        form = 'ερ' + verb
                     else:
                         form = verb[0] + 'ε' + verb
                     sub_res.append(form)
                     # augmentation
-                    if (verb[1] not in vowels and verb[1] not in ['ρ']) or verb[0] in ['ξ', 'ψ']:
-                        form = 'ε' + verb
-                        sub_res.append(form)
+                elif verb[:2] in ['ευ', 'εύ', 'αυ', 'αύ']:
+                    sub_res.append('ηυ' + verb[2:])
+                elif (verb[1] not in vowels and verb[1] not in ['ρ']) or verb[0] in ['ξ', 'ψ']:
+                    form = 'ε' + verb
+                    sub_res.append(form)
 
             sub_res_1 = [prefixes[pref] + augmented for augmented in sub_res]
-            if pref not in ['παρα']:
-                sub_res_2 = [pref + augmented for augmented in sub_res]
-            else:
-                sub_res_2 = []
+            # if pref not in ['παρα']:
+            #     sub_res_2 = [pref + augmented for augmented in sub_res]
+            # else:
+            #     sub_res_2 = []
 
-            results.extend(sub_res_1 + sub_res_2)
+            results.extend(sub_res_1)
 
-            # filter_out irregularities
-            results = list(set(results))
-            results = [f for f in results if
-                       count_syllables(f, true_syllabification=False) > 2 or f[:-1] in ['πήγ', 'πήρ', 'είχ', 'ήρθ',
-                                                                                        'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
-                                                                                        'βήκ', 'είπ', 'είδ', 'ήπι',
-                                                                                        'ήρ',
-                                                                                        'ήχθ', 'ήγ']]
+        # filter_out irregularities
+        results = list(set(results))
+        results = [f for f in results if
+                   count_syllables(f, true_syllabification=False) > 2 or f[:-1] in ['πήγ', 'πήρ', 'είχ', 'ήρθ',
+                                                                                    'ήλθ', 'βρήκ', 'μπήκ', 'βηήκ',
+                                                                                    'βήκ', 'είπ', 'είδ', 'ήπι',
+                                                                                    'ήρ',
+                                                                                    'ήχθ', 'ήγ']]
     return results
 
 

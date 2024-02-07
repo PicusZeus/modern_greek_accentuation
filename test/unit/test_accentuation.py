@@ -1,3 +1,4 @@
+from typing import Type
 from unittest import TestCase
 from modern_greek_accentuation import accentuation
 from modern_greek_accentuation.resources import ANTEPENULTIMATE, PENULTIMATE, ULTIMATE
@@ -90,10 +91,13 @@ class PutAccent(TestCase):
         r = accentuation.put_accent('ειδοποιοι', ULTIMATE)
         self.assertEqual('ειδοποιοί', r)
 
+    def test_exception(self):
+        self.assertRaises(TypeError, accentuation.convert_to_monotonic, 45)
+
     def test_convert_to_monotonic(self):
         r = accentuation.convert_to_monotonic("ἐν τῷ πρόσθεν λόγῳ δεδήλωται.")
         self.assertEqual('εν τω πρόσθεν λόγω δεδήλωται.', r)
 
-    def test_convert_to_monotonic(self):
+    def test_convert_to_monotonic_2(self):
         r = accentuation.convert_to_monotonic('δηώ', one_syllable_rule=False)
         self.assertEqual('δηώ', r)
