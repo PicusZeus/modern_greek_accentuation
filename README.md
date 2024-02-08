@@ -1,6 +1,8 @@
 ![Tests](https://github.com/PicusZeus/modern_greek_accentuation/actions/workflows/tests.yml/badge.svg)
 ![Downloads](https://img.shields.io/pypi/dm/modern-greek-accentuation)
 ![python version](https://img.shields.io/pypi/pyversions/modern-greek-accentuation)
+[![Documentation Status](https://readthedocs.org/projects/modern-greek-accentuation/badge/?version=latest)]
+
 
 [//]: # (![GitHub License]&#40;https://img.shields.io/github/license/picuszeus/modern-greek-accentuation&#41;)
 
@@ -17,6 +19,8 @@ pip install modern-greek-accentuation
 ```
 
 ## Usage
+
+see [documentation](https://modern-greek-accentuation.readthedocs.io/en/latest/)
 
 see [docs.rst](https://github.com/PicusZeus/modern_greek_accentuation/blob/master/docs.rst)
 
