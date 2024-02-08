@@ -79,6 +79,11 @@ class PutAccent(TestCase):
         self.assertEqual("Βαΐου", r3)
         self.assertEqual("διαβατηρίου", r4)
 
+    def test_put_accent_on_diphtong_hu(self):
+        self.assertEqual(
+            accentuation.put_accent("ηυρα", PENULTIMATE),
+            'ηύρα'
+        )
     def test_put_accent_ultimate(self):
         r = accentuation.put_accent("παιδι", ULTIMATE)
         self.assertEqual("παιδί", r)

@@ -27,7 +27,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
-
+ * 1.0.6 Last update inadvertently introduced a bug that slowed down the app significantly, the problem has been fixed
  * 1.0.5 Augmentation now will try to augment passive participles that start on vowels.
  * 1.0.4 Updated algorithms for augmentation and deagmentation so that they produce less possible form, but still useful.
  * 1.0.3 Prefix para detachable removed, as it caused too much problems with augmentation, instead issue with detachable para should be resolved in your code externally.

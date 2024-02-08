@@ -8,96 +8,96 @@ from modern_greek_accentuation import augmentify
 class Augmentation(TestCase):
 
     def test_hthela(self):
-        al = list(augmentify.add_augment('θέλα'))
+        al = augmentify.add_augment('θέλα')
         self.assertIn('ήθελα', al)
 
     def test_upofera(self):
-        al = list(augmentify.add_augment('υποφερα'))
+        al = augmentify.add_augment('υποφερα')
         self.assertIn('υπέφερα', al)
 
     def test_prokeitai(self):
-        al = list(augmentify.add_augment('πρόκειτο'))
+        al = augmentify.add_augment('πρόκειτο')
         self.assertIn('επρόκειτο', al)
 
     def test_dedomenos(self):
-        al = list(augmentify.add_augment('δομένος'))
+        al = augmentify.add_augment('δομένος')
         self.assertIn('δεδομένος', al)
 
     def test_sunelambana(self):
-        al = list(augmentify.add_augment('συλλάμβανα'))
+        al = augmentify.add_augment('συλλάμβανα')
         self.assertIn('συνελάμβανα', al)
 
     def test_pairno(self):
         # if form is identical to one of prefixes
         self.assertEqual(
             augmentify.add_augment('πάρα'),
-            ['έπαρα'],
+            {'έπαρα'},
         )
         self.assertNotIn('παρέα', augmentify.add_augment('πάρα'))
 
     def test_airo(self):
         self.assertEqual(
-            set(augmentify.add_augment('αίρα')),
-            {'ήιρα', 'ήρα'}
+            augmentify.add_augment('αίρα'),
+            {'ήρα'}
         )
 
     def test_drw(self):
         self.assertEqual(
-            set(augmentify.add_augment('δρασμένος')),
+            augmentify.add_augment('δρασμένος'),
             {'δρασμένος', 'δεδρασμένος'}
         )
 
     def test_krimenos(self):
         self.assertEqual(
-            set(augmentify.add_augment('κριμένος')),
+            augmentify.add_augment('κριμένος'),
             {'κριμένος', 'κεκριμένος'}
         )
 
     def test_υπάρχω(self):
         self.assertEqual(
-            set(augmentify.add_augment('υπαρχα')),
+            augmentify.add_augment('υπαρχα'),
             {'ύπαρχα', 'υπήρχα', 'υπαρχα'}
         )
 
     def test_διέπω(self):
         self.assertEqual(
-            set(augmentify.add_augment('διεπα')),
-            {'δίεπα', 'διείπα', 'έδιεπα', 'διήπα'}
+            augmentify.add_augment('διεπα'),
+            {'δίεπα', 'διείπα', 'διήπα', 'έδιεπα'}
         )
 
     def test_dinw(self):
         self.assertEqual(
-            set(augmentify.add_augment('δινα')),
+            augmentify.add_augment('δίνα'),
             {'έδινα'}
         )
 
     def test_pianw(self):
         self.assertEqual(
-            set(augmentify.add_augment('πιανα')),
+            augmentify.add_augment('πιανα'),
             {'έπιανα', 'πίανα'}
         )
 
     def test_paralaba(self):
         self.assertEqual(
-            set(augmentify.add_augment('παράλαβα')),
+            augmentify.add_augment('παράλαβα'),
             {'παράλαβα', 'παρέλαβα', 'παρήλαβα', 'επαράλαβα'}
         )
 
     def test_parameina(self):
         self.assertEqual(
-            set(augmentify.add_augment('παράμεινα')),
+            augmentify.add_augment('παράμεινα'),
             {'επαράμεινα', 'παρέμεινα', 'παράμεινα', 'παρήμεινα'},
         )
 
     def test_αυξημένος(self):
         self.assertEqual(
-            set(augmentify.add_augment('αυξημένος')),
+            augmentify.add_augment('αυξημένος'),
             {'ηυξημένος', 'αυξημένος'}
         )
 
     def test_paresth(self):
         self.assertEqual(
-            set(augmentify.add_augment('παράστη')),
+            augmentify.add_augment('παράστη'),
             {'πάραστη', 'παρήστη', 'παράστη', 'παρέστη', 'επαράστη'}
             ,
             # print(set(augmentify.add_augment('παράβαλα')))
@@ -105,40 +105,66 @@ class Augmentation(TestCase):
 
     def test_synap(self):
         self.assertEqual(
-            set(augmentify.add_augment('συναπόθανα')),
+            augmentify.add_augment('συναπόθανα'),
             {'εσυναπόθανα', 'συναπόθανα', 'συναπέθανα', 'συνεναπόθανα',
              'συνηπόθανα'},
         )
 
     def test_eyriskw(self):
         self.assertEqual(
-            set(augmentify.add_augment('εύρα')),
-            {'ηυρα'}
+            augmentify.add_augment('εύρα'),
+            {'ηύρα'}
+        )
+
+    def test_katapsygmenos(self):
+        self.assertEqual(
+            augmentify.add_augment('καταψυγμένος'),
+            { 'καταψυγμένος', 'κεκαταψυγμένος', 'κατεψυγμένος'}
+
         )
 
     def test_parmenos(self):
         self.assertEqual(
-            set(augmentify.add_augment('παρμένος')),
+            augmentify.add_augment('παρμένος'),
             {'παρμένος', 'πεπαρμένος'}
         )
 
     def test_biasmenos(self):
         self.assertEqual(
-            set(augmentify.add_augment('βιασμένος')),
+            augmentify.add_augment('βιασμένος'),
             {'βιασμένος', 'βεβιασμένος'}
         )
 
     def test_metaggizw(self):
         self.assertEqual(
-            set(augmentify.add_augment('μετάγγισα')),
+            augmentify.add_augment('μετάγγισα'),
             {'μετάγγισα', 'μετέγγισα', 'μετήγγισα', 'εμετάγγισα'},
+        )
+
+    def test_synkrimenos(self):
+        self.assertEqual(
+            augmentify.add_augment('συγκριμένος'),
+            {'συγκεκριμένος', 'σεσυγκριμένος', 'συγκριμένος', 'συνεγκριμένος'}
+        )
+
+    def test_thewreito(self):
+        self.assertEqual(
+            augmentify.add_augment('θεωρείτο'),
+            {'εθεωρείτο', 'θεωρείτο', 'θεώρειτο'}
+        )
+
+    def test_eida(self):
+        self.assertEqual(
+            augmentify.add_augment('ίδα'),
+            {'είδα'},
         )
 
     def test_thwrakismenos(self):
         self.assertEqual(
-            set(augmentify.add_augment('θωρακισμένος')),
+            augmentify.add_augment('θωρακισμένος'),
             {'τεθωρακισμένος', 'θωρακισμένος'}
         )
+
 
 class DeAugment(TestCase):
 
