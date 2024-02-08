@@ -173,20 +173,20 @@ class DeAugment(TestCase):
         self.assertEqual(('επεμβη',), r)
 
     def test_deaugment_ketepsixa(self):
-        r = augmentify.deaugment_prefixed_form('κατέψυχα'),
-        self.assertEqual(('καταψυχα',), r)
+        r = augmentify.deaugment_prefixed_form('κατέψυχ'),
+        self.assertEqual(('καταψυχ',), r)
 
     def test_deaugment_sokare(self):
         r = augmentify.deaugment_prefixed_form('σόκαρε'),
         self.assertEqual(('σοκαρε',), r)
 
     def test_deaugment_parhggeil(self):
-        r = augmentify.deaugment_prefixed_form('παρήγγειλα'),
-        self.assertEqual(('παραγγειλα',), r)
+        r = augmentify.deaugment_prefixed_form('παρήγγειλ'),
+        self.assertEqual(('παραγγειλ',), r)
 
     def test_deaugment_parhgagan(self):
-        r = augmentify.deaugment_prefixed_form('παρηγάγανε'),
-        self.assertEqual(('παραγαγανε',), r)
+        r = augmentify.deaugment_prefixed_form('παρηγαγ'),
+        self.assertEqual(('παραγαγ',), r)
 
     def test_deaugment_parebh(self):
         r = augmentify.deaugment_prefixed_form('παρέβη'),
@@ -197,8 +197,8 @@ class DeAugment(TestCase):
         self.assertEqual(('εγκρινα',), r)
 
     def test_deaugment_enekrina(self):
-        r = augmentify.deaugment_prefixed_form('εξέβαλα'),
-        self.assertEqual(('εκβαλα',), r)
+        r = augmentify.deaugment_prefixed_form('εξέβαλ'),
+        self.assertEqual(('εκβαλ',), r)
 
     def test_deaugment_past_form(self):
         r = augmentify.deaugment_past_form('έκανες', 'κάνω'),

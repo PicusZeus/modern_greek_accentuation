@@ -18,8 +18,6 @@ pip install modern-greek-accentuation
 
 ## Usage
 
-see [documentation](https://github.com/PicusZeus/modern_greek_accentuation/docs/_build/html/index.html)
-
 see [docs.rst](https://github.com/PicusZeus/modern_greek_accentuation/blob/master/docs.rst)
 
 **TO DO**
