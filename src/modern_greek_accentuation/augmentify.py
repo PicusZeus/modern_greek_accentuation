@@ -7,11 +7,10 @@ from typing import List
 
 def add_augment(not_augmented_form: str) -> set[str]:
     """
-    :param not_augmented_form: past verb form without an augment or perfect participle.
-    only for creating regular past tenses. deals with prefixes.
-    :return: Augmented verb form or perfect participle. It also deals with reduplication.
-     The result must be checked against a data base of existing
-     words. accent on antepenultimate
+    **This functions create quite often multiple "proposals" for an augmented form, since it is a semi regular process in Modern Greek.**
+
+    :param not_augmented_form: Past verb form without an augment or perfect participle that needs to be augmented/reduplicated. Works also for internal augment.
+    :return: A set with zero or more guessed forms.
     """
     results = []
     try:
@@ -37,14 +36,14 @@ def add_augment(not_augmented_form: str) -> set[str]:
     return set(results)
 
 
-def add_augment_with_prefix(prefixes: dict, not_augmented_form: str, on_vowel: bool = False):
+def add_augment_with_prefix(prefixes: dict, not_augmented_form: str, on_vowel: bool = False) -> list[str]:
     """
+    **Helper function to be used in the `add_augment` function**
 
-    :param prefixes:
-    :param not_augmented_form:
-    :param results:
-    :param on_vowel:
-    :return:
+    :param prefixes: a dictionary with prefixes as keys and prefixes before augment as values.
+    :param not_augmented_form: A past form with only past ending, before augmentation.
+    :param on_vowel: If on_vowel is False (default) it expects the (stem) verb to begin with a consonant.
+    :return: a list with guessed forms.
     """
     result = []
     for pref in prefixes.keys():
@@ -175,38 +174,13 @@ def add_augment_with_prefix(prefixes: dict, not_augmented_form: str, on_vowel: b
     return results
 
 
-def deaugment_prefixed_stem(stem: str) -> str:
-    """
-    :param stem: verb stem with cut off ending, prefixed
-    :return: check if the stem is augmented and if it is, returns an anaugmented stem without any accent
-    """
-
-    for pref in sorted(dict_of_augmented_prefixes.items(), key=lambda key: len(key[1]), reverse=True):
-        if pref[1] == remove_all_diacritics(stem[:len(pref[1])]):
-
-            prefix = pref[0].strip()
-            verb = stem[len(pref[1]):]
-
-            if prefix[-1] == 'ν':
-                if verb[0] in ['γ', 'χ', 'κ', 'ξ']:
-                    prefix = prefix[:-1] + 'γ'
-                if verb[0] == 'λ':
-                    prefix = prefix[:-1] + 'λ'
-                if verb[0] in ['μ' 'φ', 'β', 'π', 'ψ']:
-                    prefix = prefix[:-1] + 'μ'
-                if verb[0] in ['σ', 'ζ']:
-                    prefix = prefix[:-1]
-
-            return prefix + verb
-
-    return remove_all_diacritics(stem)
-
-
 def deaugment_stem(stem: str, lemma: str) -> str | None:
     """
-    :param stem: verb stem
-    :param lemma: lemma is needed to check if an anaugmented stem begins on e or a
-    :return: deaugmented_stem if successful, else None, it must be checked against a data base of all forms
+    **A function can be useful if you want to conjugate in the past tense a Greek verb that has an augment**
+
+    :param stem: a non prefixed verb past stem (without endings) that is or is supposed to be augmented, so it must has two syllable (like έκαν from έκανα)
+    :param lemma: Present form, and so unaugmented, of a verb.
+    :return: deaugmented (if augment wasn't accented in the first place) verb stem without accent, if not able to create, return None
     """
 
     if count_syllables(stem, true_syllabification=False) == 2 and stem[-1] != 'ι':
@@ -216,15 +190,45 @@ def deaugment_stem(stem: str, lemma: str) -> str | None:
                 deagmented_stem = lemma[0] + deagmented_stem
             elif lemma[0] == 'ε':
                 deagmented_stem = stem
-            return deagmented_stem
+            return remove_all_accents(deagmented_stem)
     return None
+
+
+def deaugment_prefixed_form(stem: str) -> str:
+    """
+    :param stem: a verb stem (without an ending) that is or is supposed to be internally augmented
+    :return: a prefixed verb stem with augment removed only if it was accented
+    """
+
+    for pref in sorted(dict_of_augmented_prefixes.items(), key=lambda key: len(key[1]), reverse=True):
+        if pref[1] == remove_all_diacritics(stem[:len(pref[1])]):
+
+            prefix = pref[0].strip()
+            verb = stem[len(pref[1]):]
+            if count_syllables(verb, False) > 1:
+                # we don't want to remove augment if the augment wasnt accented in the first place
+                return remove_all_accents(stem)
+
+            elif prefix[-1] == 'ν':
+                if verb[0] in ['γ', 'χ', 'κ', 'ξ']:
+                    prefix = prefix[:-1] + 'γ'
+                if verb[0] == 'λ':
+                    prefix = prefix[:-1] + 'λ'
+                if verb[0] in ['μ' 'φ', 'β', 'π', 'ψ']:
+                    prefix = prefix[:-1] + 'μ'
+                if verb[0] in ['σ', 'ζ']:
+                    prefix = prefix[:-1]
+
+            return remove_all_accents(prefix + verb)
+
+    return remove_all_accents(stem)
 
 
 def deaugment_past_form(form: str, lemma: str) -> str:
     """
-    :param form: verb
-    :param lemma: lemma is needed to check if an anaugmented stem begins on e or a
-    :return: deaugmented_stem if successful, else None, it must be checked against a data base of all forms
+    :param form: an augmented past form, not prefixed
+    :param lemma: lemma is needed to check if an unaugmented stem begins on e or a
+    :return: deaugmented form if successful, else the given form, with removed accents
     """
 
     if form[0] in ['έ', 'ή']:
@@ -233,48 +237,5 @@ def deaugment_past_form(form: str, lemma: str) -> str:
             deagmented_stem = lemma[0] + deagmented_stem
         elif lemma[0] == 'ε':
             deagmented_stem = form
-        return deagmented_stem
-    return form
-
-
-def put_accent_on_past_tense(past_form: str, present_form: str) -> str:
-    """
-    :param past_form:  a result of adding an ending to a past stem
-    :param present_form:
-    :return: put an accent on antepenultimate and if necessary deals with an augment,
-    that is it removes it if it's not accented
-     this function is not applicable to paratatikos in second con.
-     It returns also two error messages: "it's not a valid form", "it's not a valid verb form", if described situations
-     take place
-    """
-
-    result = past_form
-
-    prefix = ''
-    # if there is a prefix that doesn't influence the verb form, cut it and attach at the end, so that
-    # augments can be correctly handled
-
-    for pref in prefixes_detachable:
-
-        if pref == past_form[:len(pref)]:
-            prefix = pref
-            break
-
-    result = remove_all_diacritics(result)
-
-    syllables = modern_greek_syllabify(result)
-
-    if len(syllables) > 3:
-
-        # if there is unaccented augment, strip it
-        # but be careful with e or h that are parts of the stem in the present
-        if result[0] == 'ε' and present_form[0] != 'ε':
-            result = prefix + result[1:]
-
-        elif result[0] == 'η' and present_form[0] == 'ε':
-            result = prefix + 'ε' + result[1:]
-
-    else:
-        result = prefix + result
-
-    return put_accent_on_the_antepenultimate(result, true_syllabification=False)
+        return remove_all_accents(deagmented_stem)
+    return remove_all_accents(form)

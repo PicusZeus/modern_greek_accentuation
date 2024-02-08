@@ -1,5 +1,5 @@
 from enum import Enum
-from .resources import ULTIMATE, ANTEPENULTIMATE, PENULTIMATE
+from .resources import ULTIMATE, ANTEPENULTIMATE, PENULTIMATE, INCORRECT_ACCENT
 from typing import NewType
 
 
@@ -7,6 +7,7 @@ class Accent(Enum):
     ULTIMATE = ULTIMATE
     PENULTIMATE = PENULTIMATE
     ANTEPENULTIMATE = ANTEPENULTIMATE
+    INCORRECT_ACCENT = INCORRECT_ACCENT
 
 
 AccentType = NewType('Accents', Accent)

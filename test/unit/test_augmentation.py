@@ -169,35 +169,35 @@ class Augmentation(TestCase):
 class DeAugment(TestCase):
 
     def test_deaugment_epembh(self):
-        r = augmentify.deaugment_prefixed_stem('επενέβη'),
+        r = augmentify.deaugment_prefixed_form('επενέβη'),
         self.assertEqual(('επεμβη',), r)
 
     def test_deaugment_ketepsixa(self):
-        r = augmentify.deaugment_prefixed_stem('κατέψυχα'),
+        r = augmentify.deaugment_prefixed_form('κατέψυχα'),
         self.assertEqual(('καταψυχα',), r)
 
     def test_deaugment_sokare(self):
-        r = augmentify.deaugment_prefixed_stem('σόκαρε'),
+        r = augmentify.deaugment_prefixed_form('σόκαρε'),
         self.assertEqual(('σοκαρε',), r)
 
     def test_deaugment_parhggeil(self):
-        r = augmentify.deaugment_prefixed_stem('παρήγγειλα'),
+        r = augmentify.deaugment_prefixed_form('παρήγγειλα'),
         self.assertEqual(('παραγγειλα',), r)
 
     def test_deaugment_parhgagan(self):
-        r = augmentify.deaugment_prefixed_stem('παρηγάγανε'),
-        self.assertEqual(('παραγάγανε',), r)
+        r = augmentify.deaugment_prefixed_form('παρηγάγανε'),
+        self.assertEqual(('παραγαγανε',), r)
 
     def test_deaugment_parebh(self):
-        r = augmentify.deaugment_prefixed_stem('παρέβη'),
+        r = augmentify.deaugment_prefixed_form('παρέβη'),
         self.assertEqual(('παραβη',), r, )
 
     def test_deaugment_enekrina(self):
-        r = augmentify.deaugment_prefixed_stem('ενέκρινα'),
+        r = augmentify.deaugment_prefixed_form('ενέκρινα'),
         self.assertEqual(('εγκρινα',), r)
 
     def test_deaugment_enekrina(self):
-        r = augmentify.deaugment_prefixed_stem('εξέβαλα'),
+        r = augmentify.deaugment_prefixed_form('εξέβαλα'),
         self.assertEqual(('εκβαλα',), r)
 
     def test_deaugment_past_form(self):
@@ -205,16 +205,4 @@ class DeAugment(TestCase):
         self.assertEqual(('κανες',), r)
 
 
-class PutAccentAndAugmentify(TestCase):
 
-    def test_put_accent_ekane(self):
-        r = augmentify.put_accent_on_past_tense('εκανε', 'κάνω')
-        self.assertEqual('έκανε', r)
-
-    def test_put_accent_ekaname(self):
-        r = augmentify.put_accent_on_past_tense('εκαναμε', 'κάνω')
-        self.assertEqual('κάναμε', r)
-
-    def test_put_accent_hlpizame(self):
-        r = augmentify.put_accent_on_past_tense('ηλπιζαμε', 'ελπίζω')
-        self.assertEqual('ελπίζαμε', r)

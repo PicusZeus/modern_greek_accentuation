@@ -25,7 +25,7 @@ class RemoveAccent(TestCase):
         self.assertEqual('αγαθου', r)
 
     def test_remove_with_diaeresis(self):
-        r = accentuation.remove_all_diacritics_with_diaer('προϋπηρεσία')
+        r = accentuation.remove_all_diacritics_with_dier('προϋπηρεσία')
         self.assertEqual('προυπηρεσια', r)
 
     def test_remove_only_diaeresis(self):

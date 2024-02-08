@@ -18,7 +18,13 @@ pip install modern-greek-accentuation
 
 ## Usage
 
+see [documentation](https://github.com/PicusZeus/modern_greek_accentuation/docs/_build/html/index.html)
+
 see [docs.rst](https://github.com/PicusZeus/modern_greek_accentuation/blob/master/docs.rst)
+
+**TO DO**
+
+include doctest in docstrings and remove docs.rst
 
 
 ## Contributing
@@ -27,6 +33,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Change Log
+ * 1.0.7 Moved to sphinx documentation.
  * 1.0.6 Last update inadvertently introduced a bug that slowed down the app significantly, the problem has been fixed
  * 1.0.5 Augmentation now will try to augment passive participles that start on vowels.
  * 1.0.4 Updated algorithms for augmentation and deagmentation so that they produce less possible form, but still useful.

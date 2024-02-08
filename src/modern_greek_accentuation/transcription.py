@@ -13,6 +13,7 @@ def simple_transcription(word: str, h=None, modern: bool = False) -> str:
     """
     This is the simplest possible transcription mostly based on Erasmian pronunciation. Such a transcription
     can be used for identifying words written with orthographic errors or written with latin chars.
+
     :param modern:
     :param word: word written with Greek chars.
     :param h: you can define how to render 'η', default is 'h'.
@@ -86,6 +87,11 @@ def capitalize_or_upper_transcription(word: str, transcription: str) -> str:
 
 
 def has_rough_breathing(word: str) -> bool:
+    """
+    Utility function, it checks if a word has a rough breathing
+    :param word: a single word
+    :return: True if rough breathing detected, else False
+    """
     decomposed = unicodedata.normalize("NFD", word[0])
 
     if decomposed[0].lower() in vowels:
@@ -100,7 +106,8 @@ def has_rough_breathing(word: str) -> bool:
 
 def erasmian_transcription(word: str) -> str:
     """
-    It's basically ``simple_transcription`` but it renders rough breathing as 'h'
+    It's basically `simple_transcription` but it renders rough breathing as 'h'
+
     :param word: word written in greek
     :return: Erasmian transcription
     """
@@ -114,8 +121,10 @@ def erasmian_transcription(word: str) -> str:
 
 def modern_transcription(word: str) -> str:
     """
-    It has nothing to do with phonetic transcription in international phonetic alphabet. It's thought only for Polish
-    readers as a simple way to get transcription of Modern Greek texts accessible to lay people
+    It has nothing to do with phonetic transcription in international phonetic alphabet. It's thought mainly for Polish
+    readers as a simple way to get transcription of Modern Greek texts accessible to lay people. Also it can be used to
+    detect homophones, as it renders all i, e, o as the same char.
+
     :param word: written in Greek chars
     :return: simple transcription in following Modern Greek pronunciation.
     """
